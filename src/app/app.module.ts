@@ -6,10 +6,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OnScrollDirective } from './shared/on-scroll.directive';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    TableModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
