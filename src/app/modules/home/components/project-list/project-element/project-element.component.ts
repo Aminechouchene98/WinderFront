@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-element.component.scss']
 })
 export class ProjectElementComponent {
-
+  showProjectDetails = false;
 }
