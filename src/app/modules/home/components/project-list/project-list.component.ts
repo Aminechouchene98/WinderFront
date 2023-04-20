@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-list.component.scss']
 })
 export class ProjectListComponent {
-
+  sidebarVisible1 = false;
 }
