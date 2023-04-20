@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { MegaMenuModule } from 'primeng/megamenu';
@@ -16,8 +15,9 @@ import { ProjectDetailsBarComponent } from './components/project-details-bar/pro
 import { SidebarModule } from 'primeng/sidebar';
 import { PostProjectComponent } from './components/post-project/post-project.component';
 import { DividerModule } from 'primeng/divider';
+import { ProgressBarModule } from 'primeng/progressbar';
 
-const PRIME_MODULES = [MegaMenuModule, CardModule, InputTextModule, ChipModule, CheckboxModule, ButtonModule, SidebarModule, DividerModule];
+const PRIME_MODULES = [MegaMenuModule, CardModule, InputTextModule, ChipModule, CheckboxModule, ButtonModule, SidebarModule, DividerModule, ProgressBarModule];
 
 @NgModule({
   declarations: [ProjectComponent, ProjectListComponent, ProjectElementComponent, ProjectDetailsBarComponent, PostProjectComponent],
