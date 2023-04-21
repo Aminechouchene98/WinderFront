@@ -9,10 +9,11 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { DockModule } from 'primeng/dock';
 import { AnimateModule } from 'primeng/animate';
 import { MegaMenuModule } from 'primeng/megamenu';
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
