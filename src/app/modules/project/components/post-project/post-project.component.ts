@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { EditPostModalComponent } from './edit-post-modal/edit-post-modal.component';
 
 @Component({
   selector: 'winder-post-project',
   templateUrl: './post-project.component.html',
-  styleUrls: ['./post-project.component.scss']
+  styleUrls: ['./post-project.component.scss'],
+  providers: [DialogService]
 })
 export class PostProjectComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  ref!: DynamicDialogRef;
+  constructor(private fb: FormBuilder, public dialogService: DialogService) {}
   ngOnInit(): void {
     this.initPostForm();
     this.initChart();
@@ -127,6 +132,8 @@ export class PostProjectComponent implements OnInit {
     }
   ];
 
+  formGroupNames = ['title', 'skills', 'scope', 'budgetTo', 'description'];
+
   data: any;
 
   options: any;
@@ -184,6 +191,11 @@ export class PostProjectComponent implements OnInit {
     };
   }
 
+  editorConfig: AngularEditorConfig = {
+    enableToolbar: false,
+    showToolbar: false,
+    editable: true
+  };
   editRadio(fromGroupName: string) {
     this.postForm.controls[fromGroupName].setValue('');
   }
@@ -195,5 +207,27 @@ export class PostProjectComponent implements OnInit {
   setStepBack() {
     this.step--;
     this.progress = this.progress - 20;
+  }
+  isMessageTooShort() {
+    return this.postForm.controls['description'].value.length < 50;
+  }
+  editModal(param: any) {
+    console.log(param);
+
+    this.ref = this.dialogService.open(EditPostModalComponent, {
+      header: 'Edit ' + param,
+      width: '40%',
+      height: '50%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      data: { data: this.postForm.controls[param].value, param: param }
+    });
+
+    this.ref.onClose.subscribe((result: any) => {
+      if (result) {
+        this.postForm.get(param)?.setValue(result);
+      }
+    });
   }
 }
