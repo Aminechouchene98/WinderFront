@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Observable } from 'rxjs';
+import { SkillService } from 'src/app/shared/services/project/skill.service';
 
 @Component({
   selector: 'winder-edit-post-modal',
@@ -10,51 +12,13 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 export class EditPostModalComponent {
   field: string = '';
   data: any;
+  skillList!: Observable<any>;
   postForm!: FormGroup;
 
-  constructor(private config: DynamicDialogConfig, private fb: FormBuilder, public ref: DynamicDialogRef) {
+  constructor(private config: DynamicDialogConfig, private fb: FormBuilder, public ref: DynamicDialogRef, private ss: SkillService) {
     this.field = this.config.data.param;
     this.data = this.config.data.data;
   }
-
-  skillsExample = [
-    'angular',
-    'react',
-    'nest',
-    'dino',
-    'node',
-    'java',
-    'python',
-    'c++',
-    'c#',
-    'c',
-    'php',
-    'ruby',
-    'swift',
-    'kotlin',
-    'go',
-    'rust',
-    'scala',
-    'sql',
-    'nosql',
-    'mongodb',
-    'mysql',
-    'postgresql',
-    'oracle',
-    'sqlite',
-    'redis',
-    'memcached',
-    'cassandra',
-    'docker',
-    'kubernetes',
-    'jenkins',
-    'travis',
-    'circleci',
-    'git',
-    'github',
-    'bitbucket',
-    'gitlab'
-  ];
 
   scopes = [
     {
@@ -98,6 +62,9 @@ export class EditPostModalComponent {
   ];
 
   ngOnInit(): void {
+    console.log(this.data);
+    this.skillList = this.ss.getAllSkills();
+
     this.initPostForm();
   }
 

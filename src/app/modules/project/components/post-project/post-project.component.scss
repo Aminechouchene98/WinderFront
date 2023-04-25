@@ -92,9 +92,6 @@ p-footer {
   margin-right: 10px;
 }
 
-:host::ng-deep .p-progressbar-value {
-  background: #22c55e !important;
-}
 :host::ng-deep .p-progressbar-label {
   display: none !important;
 }
@@ -104,11 +101,6 @@ p-footer {
 
 ::ng-deep .p-multiselect {
   width: 100%;
-}
-
-::ng-deep p-radiobutton .p-radiobutton-box.p-highlight {
-  border-color: #16a34a !important;
-  background: #16a34a !important;
 }
 
 :ng-deep p-divider-vertical {
@@ -128,7 +120,6 @@ p-footer {
 }
 
 ::ng-deep .p-button-success:hover {
-  background: #22c55e !important;
   border: 1px solid #22c538 !important;
 }
 .text-sm {

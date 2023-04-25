@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EditPostModalComponent } from './edit-post-modal/edit-post-modal.component';
+import { ProjectService } from 'src/app/shared/services/project/project.service';
+import { Router } from '@angular/router';
+import { SkillService } from 'src/app/shared/services/project/skill.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'winder-post-project',
@@ -11,11 +15,16 @@ import { EditPostModalComponent } from './edit-post-modal/edit-post-modal.compon
   providers: [DialogService]
 })
 export class PostProjectComponent implements OnInit {
+  skills!: Observable<any>;
   ref!: DynamicDialogRef;
-  constructor(private fb: FormBuilder, public dialogService: DialogService) {}
+  constructor(private fb: FormBuilder, public dialogService: DialogService, private ps: ProjectService, private router: Router, private ss: SkillService) {}
   ngOnInit(): void {
     this.initPostForm();
     this.initChart();
+    this.skills = this.ss.getAllSkills();
+    this.skills.subscribe((res: any) => {
+      console.log(res);
+    });
   }
   initPostForm() {
     this.postForm = this.fb.group({
@@ -228,6 +237,24 @@ export class PostProjectComponent implements OnInit {
       if (result) {
         this.postForm.get(param)?.setValue(result);
       }
+    });
+  }
+
+  postProject() {
+    const body = {
+      title: this.postForm.controls['title'].value,
+      skills: this.postForm.controls['skills'].value,
+      scope: this.postForm.controls['scope'].value,
+      budgetFrom: this.postForm.controls['budgetFrom'].value,
+      budgetTo: this.postForm.controls['budgetTo'].value,
+      description: this.postForm.controls['description'].value,
+      duration: this.postForm.controls['duration'].value,
+      experience: this.postForm.controls['experience'].value
+    };
+    console.log(body);
+    this.ps.postProject(body).subscribe((res) => {
+      console.log(res);
+      this.router.navigate(['/project']);
     });
   }
 }

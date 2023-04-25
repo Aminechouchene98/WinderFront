@@ -37,7 +37,7 @@
           </ng-container>
 
           <ng-container *ngIf="step === 2">
-            <p-multiSelect class="w-full" [filter]="true" display="chip" [options]="skillsExample" formControlName="skills"></p-multiSelect>
+            <p-multiSelect class="w-full" [filter]="true" display="chip" [options]="skills | async" formControlName="skills"></p-multiSelect>
             <div class="grid">
               <small *ngIf="!postForm.controls['skills'].valid && postForm.controls['skills'].dirty" id="username-help" class="p-error mt-1">At least 1 skill is required</small>
               <div class="inline">
@@ -170,7 +170,7 @@
         <ng-container *ngIf="step === 2" class="block">
           <label class="w-full text-left text-sm font-medium">Popular skills for Web Development</label>
           <div class="card align-items-center mt-7 flex flex-wrap gap-2">
-            <p-chip *ngFor="let skill of skillsExample" [label]="skill"></p-chip>
+            <p-chip *ngFor="let skill of skills | async" [label]="skill.label"></p-chip>
           </div>
         </ng-container>
       </form>
@@ -182,7 +182,12 @@
     </div>
     <div class="button-container">
       <p-button *ngIf="step > 1" label="Back" icon="pi pi-arrow-left" styleClass="p-button-outlined p-button-success left-button" (onClick)="setStepBack()"></p-button>
-      <p-button [label]="'Next : ' + stepLabel[step]" icon="pi pi-check" styleClass="p-button-success right-button" (onClick)="setStepForward()"></p-button>
+      <p-button
+        [disabled]="!this.postForm.controls[formGroupNames[step - 1]].valid"
+        [label]="'Next : ' + stepLabel[step]"
+        icon="pi pi-check"
+        styleClass="p-button-success right-button"
+        (onClick)="setStepForward()"></p-button>
     </div>
   </p-footer>
 </ng-container>
@@ -191,7 +196,7 @@
     <div class="review-header flex justify-between">
       <h2 class="text-2xl font-bold">Job details</h2>
       <div class="flex-end">
-        <p-button label="Post this Job" icon="pi pi-send" styleClass="p-button p-button-success"></p-button>
+        <p-button label="Post this Job" icon="pi pi-send" styleClass="p-button p-button-success" (click)="postProject()"></p-button>
       </div>
     </div>
     <div class="space-y-5 rounded-lg border border-gray-300 py-7 px-1.5 sm:px-7">
@@ -209,10 +214,12 @@
       <p-divider></p-divider>
       <label class="font-semibold text-zinc-700">Skills</label>
 
-      <div class="">
-        <p-chip class="mr-1 mt-2" *ngFor="let skill of this.postForm.get('skills')?.value" [label]="skill"></p-chip>
+      <div class="flex flex-wrap items-center space-x-2 space-y-1">
+        <p-chip class="mr-1 mt-2" *ngFor="let skill of this.postForm.get('skills')?.value" [label]="skill.label"></p-chip>
+        <div class="flex justify-center"></div>
         <i class="pi pi-file-edit ml-3 cursor-pointer" style="color: #16a34a" (click)="editModal('skills')"></i>
       </div>
+
       <p-divider></p-divider>
 
       <div class="grid">
@@ -258,7 +265,7 @@
       </p-accordion>
       <div class="flex justify-between">
         <p-button label="Back" icon="pi pi-arrow-left" styleClass="p-button-outlined p-button-success" (onClick)="setStepBack()"></p-button>
-        <p-button label="Post this Job" icon="pi pi-send" styleClass="p-button-success"></p-button>
+        <p-button label="Post this Job" icon="pi pi-send" styleClass="p-button-success" (click)="postProject()"></p-button>
       </div>
     </div>
   </div>
