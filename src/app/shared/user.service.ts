@@ -3,28 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import {FormBuilder} from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8089'; // replace with your API endpoint
-
+  private apiUrl = 'http://localhost:8090'; // replace with your API endpoint
   constructor(private http: HttpClient) { }
 
   login(userName: string, password: string) {
     const body = { userName, password };
     return this.http.post(`${this.apiUrl}/authenticate`, body);
-
   }
 
 
-  signUp(body:FormBuilder,fileName:string): Observable<any> {
-    console.log(body);
-    return this.http.post(`${this.apiUrl}/registerNewUser`, body);
+  signUp(body:FormBuilder): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registerNewUser`,body);
   }
-
-
 
 
 

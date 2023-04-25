@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService} from "../../../../shared/user.service";
+import {FormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
+import {User} from "../../user";
 
 @Component({
   selector: 'winder-login',
@@ -10,6 +13,9 @@ import { UserService} from "../../../../shared/user.service";
 export class LoginComponent {
   loginForm!: FormGroup;
   errorMessage: any;
+  router!:Router;
+  user!:User;
+
 
   constructor(private fb: FormBuilder, private authService: UserService) {
 
@@ -18,21 +24,26 @@ export class LoginComponent {
   ngOnInit()
   {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      userName: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
 
 
-  onSubmit() {
-    const emailControl = this.loginForm.get('email');
-    const email = emailControl ? emailControl.value : null;
+
+
+
+
+
+ login() {
+    const userNameControl = this.loginForm.get('userName');
+    const userName = userNameControl ? userNameControl.value : null;
     const passwordControl = this.loginForm.get('password');
     const password = passwordControl ? passwordControl.value : null;
-    if (email && password) {
-      this.authService.login(email, password).subscribe(
+    if (userName && password) {
+      this.authService.login(userName, password).subscribe(
         () => {
-          // Navigate to the home page or redirect to the previous page
+          console.log("ya welcome ya welcome b si yahya ");
         },
       );
     }

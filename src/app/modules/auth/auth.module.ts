@@ -7,12 +7,16 @@ import { TableModule } from 'primeng/table';
 import { ChipsModule } from 'primeng/chips';
 import { ButtonModule } from 'primeng/button';
 import { InputMaskModule } from 'primeng/inputmask';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ChipModule } from 'primeng/chip';
 import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
-  imports: [CommonModule, AuthRoutingModule, TableModule,FileUploadModule ,ChipsModule, ButtonModule, ChipModule, InputMaskModule, ReactiveFormsModule]
+  imports: [CommonModule, AuthRoutingModule, TableModule,FileUploadModule ,ChipsModule, ButtonModule, ChipModule, InputMaskModule, ReactiveFormsModule,FormsModule]
 })
-export class AuthModule {}
+export class AuthModule {
+
+
+
+}

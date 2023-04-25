@@ -18,4 +18,25 @@ export class EncryptionService {
     return JSON.parse(bytes.toString(enc.Utf8));
   }
 
+
+/*
+  test(data: any): string {
+
+    const v1 : string = this.encrypt(data) ;
+
+    return AES.decrypt(v1,this.encryptionKey).toString();
+  }*/
+
+
+
+
+
+
+
+
+
+
+
 }
+
+

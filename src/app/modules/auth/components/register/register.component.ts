@@ -16,7 +16,7 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: UserService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -26,22 +26,23 @@ export class RegisterComponent {
       gender: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.min(8)]],
       userName: ['', [Validators.required, Validators.min(6)]],
-      fileName: ['', [Validators.required]],
-      confirmPassword: ['', Validators.required]
+      nom: ['', [Validators.required, Validators.min(6)]],
+      prenom: ['', [Validators.required, Validators.min(6)]],
     });
   }
 
 
-  onUpload(event:Event)
-  {
 
-  }
-
-
-
-  onSubmit() {
+  register() {
     const emailControl = this.RegisterForm.get('email');
     const email = emailControl ? emailControl.value : null;
+
+    const nomControl = this.RegisterForm.get('nom');
+    const nom = nomControl ? nomControl.value : null;
+
+    const prenomControl = this.RegisterForm.get('prenom');
+    const prenom = prenomControl ? prenomControl.value : null;
+
 
     const passwordControl = this.RegisterForm.get('password');
     const password = passwordControl ? passwordControl.value : null;
@@ -49,33 +50,30 @@ export class RegisterComponent {
     const genderControl = this.RegisterForm.get('gender');
     const gender = genderControl ? genderControl.value : null;
 
-    const fileNameControl = this.RegisterForm.get('fileName');
-    const fileName = fileNameControl ? fileNameControl.value : null;
-
     const userNameControl = this.RegisterForm.get('userName');
     const UserName = userNameControl ? userNameControl.value : null;
 
-    const phoneNumberControl = this.RegisterForm.get('email');
+    const phoneNumberControl = this.RegisterForm.get('phoneNumber');
     const phoneNumber = phoneNumberControl ? phoneNumberControl.value : null;
 
-    const confirmPasswordControl = this.RegisterForm.get('email');
-    const confirmPassword = confirmPasswordControl ? confirmPasswordControl.value : null;
+    //const confirmPasswordControl = this.RegisterForm.get('confirmPassword');
+    //const confirmPassword = confirmPasswordControl ? confirmPasswordControl.value : null;
 
 
 
-
+/*
 
     if (password !== confirmPassword) {
       this.errorMessage = 'Passwords do not match.';
       return;
-    }
+    }*/
 
-    this.authService.signUp(this.RegisterForm.value,this.RegisterForm.get('fileName')?.value).subscribe(
+    this.authService.signUp(this.RegisterForm.value).subscribe(
       () => {
         console.log('User signed up successfully.');
-        this.router.navigate(['/login']);
       },
     );
+
   }
 
 

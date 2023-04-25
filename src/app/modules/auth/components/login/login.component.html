@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (submit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="loginForm" >
 <div class="via-pruple-900 absolute top-0 left-0 bottom-0 h-full w-full overflow-hidden bg-purple-900 bg-gradient-to-b from-purple-300 to-red-100 leading-5"></div>
 <div class="relative min-h-screen justify-center rounded-3xl bg-transparent shadow-xl sm:flex sm:flex-row">
   <button routerLink="/" class="z-10 hidden flex-col self-center sm:flex sm:max-w-4xl lg:px-14 xl:max-w-md">
@@ -15,11 +15,11 @@
       </div>
 
       <div class="space-y-6">
-        <div class="">
+        <div >
           <input
             class="w-full rounded-lg border border-gray-200 bg-gray-200 px-4 py-3 text-sm focus:border-purple-400 focus:bg-gray-100 focus:outline-none"
-            type="email" id="email" formControlName="email"
-            placeholder="Email" />
+            type="userName" id="userName" formControlName="userName"
+            placeholder="UserName" />
         </div>
 
         <div class="relative" x-data="{ show: true }">
@@ -36,6 +36,7 @@
         </div>
         <div>
           <button
+            (click)="login()"
             type="submit"
             class="flex w-full cursor-pointer justify-center rounded-lg bg-purple-800 p-3 font-semibold tracking-wide text-gray-100 transition duration-500 ease-in hover:bg-purple-700">
             Sign in
