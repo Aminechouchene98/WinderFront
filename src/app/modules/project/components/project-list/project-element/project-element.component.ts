@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'winder-project-element',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-element.component.scss']
 })
 export class ProjectElementComponent {
+  @Input() project: any;
+  ngOnInit(): void {
+    console.log(this.project);
+  }
+
   showProjectDetails = false;
 }
