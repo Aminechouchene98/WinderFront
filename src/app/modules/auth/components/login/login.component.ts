@@ -4,6 +4,8 @@ import { UserService} from "../../../../shared/user.service";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {User} from "../../user";
+import {EncryptionService} from "../../../../shared/encryption.service";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'winder-login',
@@ -13,11 +15,13 @@ import {User} from "../../user";
 export class LoginComponent {
   loginForm!: FormGroup;
   errorMessage: any;
-  router!:Router;
   user!:User;
+  data: any;
+  test : any;
+  test1:any;
+  public userName: any;
 
-
-  constructor(private fb: FormBuilder, private authService: UserService) {
+  constructor(private router: Router,private fb: FormBuilder, private authService: UserService,private encryptionService:EncryptionService ) {
 
   }
 
@@ -42,12 +46,35 @@ export class LoginComponent {
     const password = passwordControl ? passwordControl.value : null;
     if (userName && password) {
       this.authService.login(userName, password).subscribe(
-        () => {
+        data => {
           console.log("ya welcome ya welcome b si yahya ");
+          if ((data as { [key: string]: any })['jwtToken'].length != 0) {
+            this.userName = (data as { [key: string]: any })["user"]['userName'];
+
+            localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
+            localStorage.setItem('test1',this.authService.getToken());
+
+            this.router.navigate(["/auth/register"]).then(e => {
+                window.location.reload();
+              }
+            )
+          }
+
         },
-      );
-    }
-  }
+        error => {
+          console.log(error.status);
+          Swal.fire(
+            'erreur!',
+            'Mot de passe ou username invalide!',
+            'error'
+          );
+        }// toufa data lena
+      ); // toufa subscribe lena
+    } // toufa l if lena
+
+
+
+  }// toufa login lena
 
 
 

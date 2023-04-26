@@ -7,7 +7,7 @@ import {AES , enc} from 'crypto-js';
 export class EncryptionService {
 
   constructor() { }
-  private encryptionKey = 'your-encryption-key';
+  private encryptionKey = 'yahya';
 
   encrypt(data: any): string {
     return AES.encrypt(JSON.stringify(data), this.encryptionKey).toString();
