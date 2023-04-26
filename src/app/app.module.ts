@@ -9,9 +9,12 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { DockModule } from 'primeng/dock';
 import { AnimateModule } from 'primeng/animate';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { HttpClientModule } from '@angular/common/http';
+import { QuestionAdminComponent } from './modules/question/question-admin/components/question-admin.component';
+import { FinishScreenComponent } from './modules/question/question/finish-screen/finish-screen.component';
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, OnScrollDirective],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule],
+  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, QuestionAdminComponent, FinishScreenComponent],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
