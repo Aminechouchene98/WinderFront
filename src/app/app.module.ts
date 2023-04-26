@@ -11,10 +11,12 @@ import { AnimateModule } from 'primeng/animate';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule, HttpClientModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
