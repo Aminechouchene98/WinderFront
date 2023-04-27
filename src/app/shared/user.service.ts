@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import {FormBuilder} from "@angular/forms";
@@ -17,8 +17,6 @@ export class UserService {
   login(userName: string, password: string) {
     const body = { userName, password };
    return  this.http.post(`${this.apiUrl}/authenticate`, body);
-
-
   }
 
 
@@ -37,6 +35,19 @@ export class UserService {
     }
     return null;
   }
+
+  logoutUser() {
+    localStorage.removeItem('authtoken');
+    this.router.navigate(['/auth'])
+  }
+
+
+
+
+
+
+
+
 
 
 

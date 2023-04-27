@@ -51,13 +51,11 @@ export class LoginComponent {
           if ((data as { [key: string]: any })['jwtToken'].length != 0) {
             this.userName = (data as { [key: string]: any })["user"]['userName'];
 
-            localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
-            localStorage.setItem('test1',this.authService.getToken());
+         //   localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
+            localStorage.setItem('authtoken',this.authService.getToken());
 
-            this.router.navigate(["/auth/register"]).then(e => {
-                window.location.reload();
-              }
-            )
+            this.router.navigate(["/project"]);
+
           }
 
         },
