@@ -11,9 +11,13 @@ export class ProjectService {
   constructor(private http: HttpClient) {}
 
   postProject(body: any) {
-    return this.http.post(this.baseUrl + 'addProject', body);
+   // return this.http.post(this.baseUrl + 'addProject', body);
+    return null;
   }
-  getAllProjects(): Observable<any> {
-    return this.http.get(this.baseUrl + 'allProjects');
+  getAllProjects():  Observable<any> {
+    //return this.http.get(this.baseUrl + 'allProjects');
+    return new Observable<any>() ;
   }
+
+
 }
