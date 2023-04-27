@@ -43,6 +43,11 @@ export class UserService {
 
 
 
+  IsLoggedIn()
+  {
+    return !!localStorage.getItem('token');
+  }
+
 
 
 
