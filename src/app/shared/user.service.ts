@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import {FormBuilder} from "@angular/forms";
 import { Router } from '@angular/router';
+import {EncryptionService} from "./encryption.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  public data: any;
   private apiUrl = 'http://localhost:8090'; // replace with your API endpoint
-  constructor(private http: HttpClient) { }
+  constructor(private encryptionService: EncryptionService,private http: HttpClient, private router: Router) { }
 
   login(userName: string, password: string) {
     const body = { userName, password };
-    return this.http.post(`${this.apiUrl}/authenticate`, body);
+   return  this.http.post(`${this.apiUrl}/authenticate`, body);
   }
 
 
@@ -23,29 +25,31 @@ export class UserService {
   }
 
 
-
-
-
-  logout(): void {
-    // Remove the access token and user information from local storage
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('user');
-  }
-
-  isLoggedIn(): boolean {
-    // Check if the user is logged in based on the presence of the access token in local storage
-    return localStorage.getItem('accessToken') !== null;
-  }
-
   getToken() {
-    // Get the access token from local storage
-    return localStorage.getItem('accessToken');
+    console.log(localStorage.getItem('data')!);
+    if (localStorage.getItem('data') != null) {
+      this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
+      console.log(this.data);
+      return this.data["token"];
+
+    }
+    return null;
   }
 
-  getUser(): any{
-    // Get the user information from local storage
-    return this.http.get("http://localhost:8089"+ "/getUser/{{userName}}");
+  logoutUser() {
+    localStorage.removeItem('authtoken');
+    this.router.navigate(['/auth'])
   }
+
+
+
+
+
+
+
+
+
+
 
 
 
