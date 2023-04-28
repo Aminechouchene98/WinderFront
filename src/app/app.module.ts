@@ -11,9 +11,10 @@ import { AnimateModule } from 'primeng/animate';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionAdminComponent } from './modules/question/question-admin/components/question-admin.component';
-import { FinishScreenComponent } from './modules/question/question/finish-screen/finish-screen.component';
+import { FinishScreenComponent } from './modules/test/finish-screen/finish-screen.component';
+import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, QuestionAdminComponent, FinishScreenComponent],
+  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, QuestionAdminComponent, FinishScreenComponent, FinishScreenFailComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
