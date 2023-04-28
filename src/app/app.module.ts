@@ -13,10 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuestionAdminComponent } from './modules/question/question-admin/components/question-admin.component';
 import { FinishScreenComponent } from './modules/test/finish-screen/finish-screen.component';
 import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective, QuestionAdminComponent, FinishScreenComponent, FinishScreenFailComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],
-  providers: [],
+  providers: [HttpClientModule],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}

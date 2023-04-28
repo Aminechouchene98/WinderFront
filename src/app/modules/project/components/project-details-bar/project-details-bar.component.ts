@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./project-details-bar.component.scss']
 })
 export class ProjectDetailsBarComponent {
-  @Input() show!: boolean;
+  @Input() project!: any;
 }

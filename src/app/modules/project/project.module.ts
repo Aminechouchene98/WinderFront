@@ -24,6 +24,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ChartModule } from 'primeng/chart';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { EditPostModalComponent } from './components/post-project/edit-post-modal/edit-post-modal.component';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AccordionModule } from 'primeng/accordion';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const PRIME_MODULES = [
   MegaMenuModule,
@@ -41,11 +46,14 @@ const PRIME_MODULES = [
   RadioButtonModule,
   InputNumberModule,
   ChartModule,
-  FileUploadModule
+  FileUploadModule,
+  AngularEditorModule,
+  DynamicDialogModule,
+  AccordionModule
 ];
 
 @NgModule({
-  declarations: [ProjectComponent, ProjectListComponent, ProjectElementComponent, ProjectDetailsBarComponent, PostProjectComponent],
-  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule]
+  declarations: [ProjectComponent, ProjectListComponent, ProjectElementComponent, ProjectDetailsBarComponent, PostProjectComponent, EditPostModalComponent],
+  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModule]
 })
 export class ProjectModule {}
