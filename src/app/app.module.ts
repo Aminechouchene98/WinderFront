@@ -11,10 +11,14 @@ import { AnimateModule } from 'primeng/animate';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import {ResetPasswordComponent} from "./modules/reset-password/reset-password/reset-password.component";
+import {NgProgressModule} from "ngx-progressbar";
+import { ReactiveFormsModule } from '@angular/forms';
+import { ResetComponent } from './modules/reset/reset/reset.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, OnScrollDirective],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],
+  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule, NgProgressModule,ReactiveFormsModule],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
