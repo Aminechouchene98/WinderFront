@@ -1,36 +1,35 @@
-<div class="flex flex-col space-y-3">
-  <a class="cursor-pointer font-semibold text-zinc-800 hover:text-blue-900 hover:underline">{{ project.title }}</a>
-  <p-chip
-    label="Ourari Jilani"
-    image="https://scontent.ftun16-1.fna.fbcdn.net/v/t39.30808-6/318333736_1785673598468603_2444571119857172568_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=wxX-CNfPTX0AX-DNej6&_nc_ht=scontent.ftun16-1.fna&oh=00_AfDF5vNXzQU43z2iRWCyzCwaZnOdYo9NS00XqTUvXmy4fw&oe=64495E8D"></p-chip>
-  <small class="space-x-1 text-sm text-zinc-500"
-    ><strong>Hourly: {{ project.budgetFrom }}TND -{{ project.budgetTo }}TND</strong><span>-</span><span>{{ project.scope }}</span
-    ><span>-</span><span>Est. Budget:</span><span>{{ project.duration }}, to do</span><span>-</span><span>Posted</span><span>{{ project?.createdAt | date }}</span></small
-  >
+<div class="w-full rounded-xl border-gray-300 sm:border lg:w-[100%] 2xl:w-[100%]">
+  <div class="grid grid-cols-12">
+    <div class="col-span-9">
+      <div class="flex flex-col space-y-3 px-1.5 py-7 sm:px-7">
+        <a class="cursor-pointer font-semibold text-zinc-800 hover:text-blue-900 hover:underline">{{ project.title }}</a>
+        <p-chip
+          label="Ourari Jilani"
+          image="https://scontent.ftun16-1.fna.fbcdn.net/v/t39.30808-6/318333736_1785673598468603_2444571119857172568_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=wxX-CNfPTX0AX-DNej6&_nc_ht=scontent.ftun16-1.fna&oh=00_AfDF5vNXzQU43z2iRWCyzCwaZnOdYo9NS00XqTUvXmy4fw&oe=64495E8D"></p-chip>
+        <small class="space-x-1 text-sm text-zinc-500"
+          ><strong>Hourly: {{ project.budgetFrom }}TND -{{ project.budgetTo }}TND</strong><span>-</span><span>{{ project.scope }}</span
+          ><span>-</span><span>Est. Budget:</span><span>{{ project.duration }}, to do</span><span>-</span><span>Posted</span><span>{{ project?.createdAt | date }}</span></small
+        >
 
-  <p class="text-[15px] text-zinc-800">{{ project.description }}</p>
-  <div class="flex flex-wrap items-start space-x-2 space-y-1">
-    <p-chip *ngFor="let skill of project.skills">
-      <small class="m-2 font-bold">{{ skill.label }}</small>
-    </p-chip>
+        <p class="text-[15px] text-zinc-800">{{ project.description }}</p>
+        <div class="flex flex-wrap items-start space-x-2 space-y-1">
+          <p-chip *ngFor="let skill of project.skills">
+            <small class="m-2 font-bold">{{ skill.label }}</small>
+          </p-chip>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-3 border-l-gray-300 sm:border-l">
+      <div class="align-center mt-4 flex justify-center">
+        <div class="grid grid-rows-2">
+          <div class="row-span-1">
+            <p-button label="Apply Now" icon="pi pi-send" styleClass="p-button-rounded p-button-success"></p-button>
+          </div>
+          <div class="pt-2">
+            <p-button label="Save Job" icon="pi pi-heart" styleClass="p-button-outlined p-button-rounded p-button-success"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<aside
-  class="absolute left-0 z-[5] translate-x-[-150%] rounded-r-lg border bg-[#F3FFFC] py-5 pr-7 pl-7 shadow-2xl transition sm:left-auto sm:rounded-l-xl sm:pr-8 sm:pl-8 lg:relative lg:z-0 lg:w-[30%] lg:translate-x-0 lg:rounded-none lg:border-none lg:bg-transparent lg:py-0 lg:pl-0 lg:shadow-none xl:w-[25%] 2xl:pr-10">
-  <div class="flex items-center justify-between lg:block">
-    <h4 class="text-xl font-semibold text-zinc-800">Filter By</h4>
-    <button class="block text-zinc-700 transition hover:text-zinc-500 lg:hidden"></button>
-  </div>
-  <div class="mt-3 border-b-2 border-zinc-200 py-4">
-    <div class="mb-4 flex cursor-pointer items-center justify-between">
-      <span class="text-[17px] font-semibold text-zinc-800">Skills</span>
-    </div>
-  </div>
-  <div class="mt-1 border-b-2 border-zinc-200 py-4">
-    <div class="flex cursor-pointer items-center justify-between">
-      <span class="text-[17px] font-semibold text-zinc-800">Job experience </span>
-      <span class="rotate-180 text-2xl font-semibold text-zinc-800 transition hover:text-zinc-600"></span>
-    </div>
-    <div></div>
-  </div>
-</aside>

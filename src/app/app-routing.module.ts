@@ -16,8 +16,11 @@ const routes: Routes = [
   },
   {
     path: 'project',
-    loadChildren: () => import('./modules/project/project.module').then((m) => m.ProjectModule),
-    component: ProjectListComponent,canActivate:[AuthguardGuard]
+    loadChildren: () => import('./modules/project/project.module').then((m) => m.ProjectModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule)
   },
   {
     path: 'tests',
