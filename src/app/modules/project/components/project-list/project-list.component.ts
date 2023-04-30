@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProjectService } from 'src/app/shared/services/project/project.service';
 import { SkillService } from 'src/app/shared/services/project/skill.service';
+import {UserService} from "../../../../shared/user.service";
+
 
 @Component({
   selector: 'winder-project-list',
@@ -24,7 +26,7 @@ export class ProjectListComponent {
     budgetFrom: null,
     budgetTo: null
   };
-  constructor(private ps: ProjectService, private ss: SkillService) {}
+  constructor(private ps: ProjectService, private ss: SkillService, private userservice: UserService) {}
 
   ngOnInit(): void {
     this.skills = this.ss.getAllSkills();
@@ -34,6 +36,18 @@ export class ProjectListComponent {
       this.projects = res;
     });
   }
+
+
+
+  logout()
+  {
+    this.userservice.logoutUser();
+  }
+
+
+
+
+
 
   onFilterChange() {
     this.filters = { ...this.filters };

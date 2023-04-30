@@ -1,22 +1,18 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Question } from '../../question';
-import { QuestionService } from '../../question.service';
+import { Question } from 'src/app/modules/question/question';
 import { Option } from 'src/app/modules/option/option';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { OptionService } from 'src/app/modules/option/Option.service';
 import { gsap } from 'gsap';
-
+import { TestService } from '../test.service';
 
 
 @Component({
-  selector: 'winder-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+  selector: 'winder-test',
+  templateUrl: './test.component.html',
+  styleUrls: ['./test.component.scss']
 })
-
-export class QuestionComponent implements OnInit {
+export class TestComponent implements OnInit {
   @ViewChild('slider', { static: true }) slider!: ElementRef<HTMLDivElement>;
   @ViewChild('questionContainer', { static: true })
   questionContainer!: ElementRef<HTMLDivElement>;
@@ -38,9 +34,10 @@ export class QuestionComponent implements OnInit {
   position: string = 'top';
   selectedOption!: Option;
   answeredCorrectly = false;
-  questionId!: number;
   isLastQuestion!: boolean;
   timer:any;
+  @Input() test_id!: number;
+  MaxScore!: number;
 
   positionOptions = [
       {
@@ -64,8 +61,7 @@ export class QuestionComponent implements OnInit {
   
   constructor(private route: ActivatedRoute, 
     private router: Router, 
-    private questionService: QuestionService,
-    private optionService: OptionService,
+    private testService: TestService,
     private cdr: ChangeDetectorRef,
     
     ){
@@ -75,16 +71,12 @@ export class QuestionComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.getQuestions();
+    this.test_id = +Number(this.route.snapshot.paramMap.get('test_id'));
+    this.getQuestionsOfTest();
     this.InitDock();
-    this.optionService.getOptions().subscribe((options)=>{
-      this.options=options;
-      console.log(this.options);
-    })
     this.initAnimations();
     this.increaseProgressValue();
     this.answerElements = Array.from(this.answer.nativeElement.querySelectorAll('.answer-option'));
-   
   }
 
 
@@ -176,13 +168,21 @@ export class QuestionComponent implements OnInit {
           });
         },
       });
-    }else if (this.currentQuestionIndex === this.questions.length -1) {
+    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score == this.MaxScore ) {
       this.isLastQuestion = true;
+      this.finishQuizSuccess();
+    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score != this.MaxScore ) {
+      this.isLastQuestion = true;
+      this.finishQuizFail();
     }
   }
 
-  finishQuiz() {
-    this.router.navigate(['/question/finish']);
+  finishQuizSuccess() {
+    this.router.navigate(['/tests/finishSuccess']);
+  }
+
+  finishQuizFail() {
+    this.router.navigate(['/tests/finishFail']);
   }
   
 
@@ -210,20 +210,16 @@ export class QuestionComponent implements OnInit {
     }
   }
 */
-  
 
-  public getQuestions(): void {
-    this.questionService.getQuestions().subscribe(
-      (response: Question[]) => {
-        this.questions = response;
-        this.timer = this.questions.length * 1 * 60;
-        console.log(this.questions);
-        this.startTimer();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+  public getQuestionsOfTest(): void {
+    this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
+      this.questions = response;
+      this.timer = this.questions.length * 1 * 60;
+      this.MaxScore = this.questions.length;
+      console.log(this.questions);
+      this.startTimer();});
+   
+   
   }
 
   get question(): Question {
@@ -261,7 +257,12 @@ export class QuestionComponent implements OnInit {
   startTimer(){
     let t = window.setInterval(()=>{
       if (this.timer <= 0){
-        this.finishQuiz();
+        if (this.score == this.MaxScore){
+          this.finishQuizSuccess();
+        } else if (this.score != this.MaxScore){
+          this.finishQuizFail();
+        }
+        
         clearInterval(t);
       }else{
         this.timer--;
@@ -274,10 +275,6 @@ export class QuestionComponent implements OnInit {
     let ss = this.timer - mm * 60;
     return `${mm} min : ${ss} sec`;
   }
-  
-  
-
- 
   
 
 }

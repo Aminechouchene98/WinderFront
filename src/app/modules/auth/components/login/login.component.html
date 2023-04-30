@@ -1,3 +1,4 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginForm" >
 <div class="via-pruple-900 absolute top-0 left-0 bottom-0 h-full w-full overflow-hidden bg-purple-900 bg-gradient-to-b from-purple-300 to-red-100 leading-5"></div>
 <div class="relative min-h-screen justify-center rounded-3xl bg-transparent shadow-xl sm:flex sm:flex-row">
   <button routerLink="/" class="z-10 hidden flex-col self-center sm:flex sm:max-w-4xl lg:px-14 xl:max-w-md">
@@ -12,18 +13,19 @@
           <a href="#" class="text-sm text-purple-700 hover:text-purple-700">Sign Up</a>
         </p>
       </div>
+
       <div class="space-y-6">
-        <div class="">
+        <div >
           <input
             class="w-full rounded-lg border border-gray-200 bg-gray-200 px-4 py-3 text-sm focus:border-purple-400 focus:bg-gray-100 focus:outline-none"
-            type=""
-            placeholder="Email" />
+            type="userName" id="userName" formControlName="userName"
+            placeholder="UserName" />
         </div>
 
         <div class="relative" x-data="{ show: true }">
           <input
             placeholder="Password"
-            :type="show ? 'password' : 'text'"
+            type="password" id="password" formControlName="password"
             class="w-full rounded-lg border border-gray-200 bg-gray-200 px-4 py-3 text-sm text-gray-200 focus:border-purple-400 focus:bg-gray-100 focus:outline-none" />
         </div>
 
@@ -34,11 +36,15 @@
         </div>
         <div>
           <button
+            (click)="login()"
             type="submit"
             class="flex w-full cursor-pointer justify-center rounded-lg bg-purple-800 p-3 font-semibold tracking-wide text-gray-100 transition duration-500 ease-in hover:bg-purple-700">
             Sign in
           </button>
         </div>
+
+
+
         <div class="my-5 flex items-center justify-center space-x-2">
           <span class="h-px w-16 bg-gray-100"></span>
           <span class="font-normal text-gray-300">or</span>
@@ -573,3 +579,4 @@
     fill-opacity="1"
     d="M0,0L40,42.7C80,85,160,171,240,197.3C320,224,400,192,480,154.7C560,117,640,75,720,74.7C800,75,880,117,960,154.7C1040,192,1120,224,1200,213.3C1280,203,1360,149,1400,122.7L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
 </svg>
+</form>

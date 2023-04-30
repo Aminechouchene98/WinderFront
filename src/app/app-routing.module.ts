@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import {AuthguardGuard} from "./shared/authguard.guard";
+import {ProjectComponent} from "./modules/project/project.component";
+import {ProjectListComponent} from "./modules/project/components/project-list/project-list.component";
 
 const routes: Routes = [
   {
@@ -18,6 +21,10 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule)
+  },
+  {
+    path: 'tests',
+    loadChildren: () => import('./modules/test/test.module').then((m) => m.TestModule)
   }
 ];
 
