@@ -41,7 +41,7 @@
             <div class="grid">
               <small *ngIf="!postForm.controls['skills'].valid && postForm.controls['skills'].dirty" id="username-help" class="p-error mt-1">At least 1 skill is required</small>
               <div class="inline">
-                <i class="pi pi-star-fill mt-2 mr-2" style="color: #16a34a"></i>
+                <i class="pi pi-star-fill mr-2 mt-2" style="color: #16a34a"></i>
                 <span style="color: #16a34a">For the best results, add 3-5 skills </span>
               </div>
             </div>
@@ -117,7 +117,7 @@
             </div>
             <div class="grid pt-[3%]">
               <span class="text-sm text-zinc-700">This is the average rate for similar projects. </span>
-              <span class="w-[85]"
+              <span class="w-[85%]"
                 >Professionals tend to charge <b>20TND</b> - <b>50TND</b> /hour (TND) for web development projects like yours. Experts may charge higher rates.</span
               >
             </div>
@@ -199,7 +199,7 @@
         <p-button label="Post this Job" icon="pi pi-send" styleClass="p-button p-button-success" (click)="postProject()"></p-button>
       </div>
     </div>
-    <div class="space-y-5 rounded-lg border border-gray-300 py-7 px-1.5 sm:px-7">
+    <div class="space-y-5 rounded-lg border border-gray-300 px-1.5 py-7 sm:px-7">
       <div class="flex justify-between">
         <label class="font-semibold text-zinc-700">{{ this.postForm.get('title')?.value }}</label>
 
