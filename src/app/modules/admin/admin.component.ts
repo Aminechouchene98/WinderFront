@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -7,10 +8,16 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+  constructor(private router: Router) {}
   items!: any[];
 
   ngOnInit() {
     this.items = [
+      {
+        label: 'Dashboard',
+        icon: 'pi pi-fw pi-chart-line',
+        routerLink: '/admin/dashboard'
+      },
       {
         label: 'Users',
         icon: 'pi pi-fw pi-user',
@@ -48,32 +55,7 @@ export class AdminComponent {
       {
         label: 'Meeting',
         icon: 'pi pi-fw pi-calendar',
-        items: [
-          {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-pencil',
-            items: [
-              {
-                label: 'Save',
-                icon: 'pi pi-fw pi-calendar-plus'
-              },
-              {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
-            ]
-          },
-          {
-            label: 'Archieve',
-            icon: 'pi pi-fw pi-calendar-times',
-            items: [
-              {
-                label: 'Remove',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
-            ]
-          }
-        ]
+        routerLink: '/admin/meetings'
       },
       {
         separator: true
