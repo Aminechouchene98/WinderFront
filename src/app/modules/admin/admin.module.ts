@@ -9,11 +9,25 @@ import { MenuModule } from 'primeng/menu';
 import { ChartModule } from 'primeng/chart';
 import { AdminComponent } from './admin.component';
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { MeetingsComponent } from './meetings/meetings.component';
+import { FormsModule } from '@angular/forms';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule];
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent],
-  imports: [CommonModule, AdminRoutingModule, ...PRIME_MODULES]
+  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    AdminRoutingModule,
+    ...PRIME_MODULES,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
+  ]
 })
 export class AdminModule {}
