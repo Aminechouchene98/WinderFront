@@ -19,6 +19,16 @@ export class AdminComponent {
         routerLink: '/admin/dashboard'
       },
       {
+        label: 'Projects List',
+        icon: 'pi pi-fw pi-file-edit',
+        routerLink: '/admin/projects-list'
+      },
+      {
+        label: 'Reclamation',
+        icon: 'pi pi-fw pi-minus-circle',
+        routerLink: '/admin/reclamation'
+      },
+      {
         label: 'Users',
         icon: 'pi pi-fw pi-user',
         items: [
