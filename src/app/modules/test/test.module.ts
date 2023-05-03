@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { TestRoutingModule } from './test-routing.module';
+import { TestComponent } from './components/test.component';
 import { HttpClientModule } from '@angular/common/http';
-import { QuestionRoutingModule } from './question-routing.module';
 import { DockModule } from 'primeng/dock';
-import { QuestionComponent } from './question/components/question.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ChipModule } from 'primeng/chip';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @NgModule({
-  declarations: [QuestionComponent],
+  declarations: [
+    TestComponent
+  ],
   imports: [
     CommonModule,
-    QuestionRoutingModule,
+    TestRoutingModule,
     HttpClientModule,
     DockModule,
     MultiSelectModule,
@@ -27,4 +29,4 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ProgressSpinnerModule
   ]
 })
-export class QuestionModule { }
+export class TestModule { }
