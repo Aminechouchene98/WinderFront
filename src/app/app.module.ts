@@ -11,19 +11,19 @@ import { AnimateModule } from 'primeng/animate';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionAdminComponent } from './modules/question/question-admin/components/question-admin.component';
-import { FinishScreenComponent } from './modules/test/finish-screen/finish-screen.component';
-import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FilterPipe } from './shared/pipes/filter.pipe';
-import {ResetPasswordComponent} from "./modules/reset-password/reset-password/reset-password.component";
-import {NgProgressModule} from "ngx-progressbar";
+import { ResetPasswordComponent } from './modules/reset-password/reset-password/reset-password.component';
+import { NgProgressModule } from 'ngx-progressbar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResetComponent } from './modules/reset/reset/reset.component';
+import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
+import { FinishScreenComponent } from './modules/test/finish-screen/finish-screen.component';
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule, NgProgressModule,ReactiveFormsModule,FinishScreenComponent,FinishScreenFailComponent],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule, HttpClientModule, NgProgressModule, ReactiveFormsModule],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
