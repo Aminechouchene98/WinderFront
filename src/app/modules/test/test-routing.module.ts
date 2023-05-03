@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TestComponent } from './components/test.component';
+import { TestComponent } from './test-front/components/test.component';
 import { FinishScreenComponent } from './finish-screen/finish-screen.component';
 import { FinishScreenFailComponent } from './finish-screen-fail/finish-screen-fail.component';
+import { PostTestComponent } from './test-admin/components/post-test/post-test.component';
 
 const routes: Routes = [{
   path: ':test_id/questions',
@@ -16,6 +17,9 @@ const routes: Routes = [{
 },
 {
   path: 'update-test', component: TestComponent
+},
+{
+  path: 'add-test', component: PostTestComponent
 }];
 
 @NgModule({

@@ -8,7 +8,7 @@
     <div class="questionnaire">
       <div class="question" #questionContainer>
         <h2 class="question__heading">Question {{ currentQuestionIndex + 1 }}</h2>
-        <div class="question__q">{{ question.text }}</div>
+        <div class="question__q" #questionC>{{ question.text }}</div>
         <form [formGroup]="answerForm">
         <div class="question__answers" #answer>
           <div
@@ -33,6 +33,7 @@
         </button> -->
        
         <button *ngIf="!isLastQuestion" class="next" (click)="goToNextQuestion()">Next</button>
+        <button class="next" (click)="updateQuestion()">update</button>
         <button *ngIf="isLastQuestion" class="next" (click)="finishQuizSuccess()">Finish</button>
       </div>
       

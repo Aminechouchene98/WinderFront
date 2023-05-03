@@ -14,6 +14,7 @@ import { QuestionAdminComponent } from './modules/question/question-admin/compon
 import { FinishScreenComponent } from './modules/test/finish-screen/finish-screen.component';
 import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { PostTestComponent } from './modules/test/test-admin/components/post-test/post-test.component';
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective, QuestionAdminComponent, FinishScreenComponent, FinishScreenFailComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],

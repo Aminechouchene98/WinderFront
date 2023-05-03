@@ -17,8 +17,8 @@ export class TestService {
     return this.http.get<Test[]>(`${this.apiServerUrl}/tests/retrieve-all-tests`);
   }
 
-  public addTest(test: Test): Observable<Test> {
-    return this.http.post<Test>(`${this.apiServerUrl}/tests/add-test`, test);
+  public addTest(test: Test): Observable<Test[]> {
+    return this.http.post<Test[]>(`${this.apiServerUrl}/tests/add-test`, test);
   }
 
   public updateTest(test: Test): Observable<Test> {
@@ -37,8 +37,8 @@ export class TestService {
     return this.http.get<Question[]>(`${this.apiServerUrl}/tests/${test_id}/questions`);
   }
 
-  public updateQuestionInTest(test_id: number, question_id: number): Observable<Test>{
-    return this.http.put<Test>(`${this.apiServerUrl}/tests/update-test/${test_id}/questions/${question_id}`, null);
+  public updateQuestionInTest(test_id: number, question_id: number): Observable<Question[]>{
+    return this.http.put<Question[]>(`${this.apiServerUrl}/tests/update-test/${test_id}/questions/${question_id}`, null);
   }
   
 }

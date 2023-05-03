@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/modules/question/question';
 import { Option } from 'src/app/modules/option/option';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { gsap } from 'gsap';
-import { TestService } from '../test.service';
+import { TestService } from '../../test.service';
+import { Test } from '../../test';
 
 
 @Component({
@@ -14,13 +15,14 @@ import { TestService } from '../test.service';
 })
 export class TestComponent implements OnInit {
   @ViewChild('slider', { static: true }) slider!: ElementRef<HTMLDivElement>;
-  @ViewChild('questionContainer', { static: true })
-  questionContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('questionContainer') questionContainer!: ElementRef;
+  @ViewChild('questionC') questionC!: ElementRef;
   @ViewChild('answer', { static: true }) answer!: ElementRef<HTMLDivElement>;
   @ViewChild('main', { static: true }) main!: ElementRef<HTMLDivElement>;
   @ViewChild('actions', { static: true }) actions!: ElementRef<HTMLDivElement>;
   @ViewChild('progress', { static: true }) progress!: ElementRef<HTMLDivElement>;
-  
+  @Output() questionViewd = new EventEmitter<string>();
+
   questions: Question[] = [];
   options!: Option[];
   score: number =0;
@@ -37,7 +39,9 @@ export class TestComponent implements OnInit {
   isLastQuestion!: boolean;
   timer:any;
   @Input() test_id!: number;
+  question_id!: number;
   MaxScore!: number;
+  test!: Test;
 
   positionOptions = [
       {
@@ -210,6 +214,22 @@ export class TestComponent implements OnInit {
     }
   }
 */
+
+
+   updateQuestion() {
+    const selectedQuestion = this.questionC.nativeElement.innerHTML;
+   this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
+    const matchingQuestion = response.find((question) => question.text === selectedQuestion);
+    if (matchingQuestion) {
+      const question_id = matchingQuestion.question_id;
+      console.log(question_id);
+      this.testService.updateQuestionInTest(this.test_id, question_id).subscribe((response: Question[]) => {
+        this.questions= response;
+        console.log(this.questions);
+      });
+    }
+  });
+}
 
   public getQuestionsOfTest(): void {
     this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
