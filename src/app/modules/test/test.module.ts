@@ -10,23 +10,22 @@ import { ChipModule } from 'primeng/chip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { FinishScreenFailComponent } from './finish-screen-fail/finish-screen-fail.component';
+import { FinishScreenComponent } from './finish-screen/finish-screen.component';
 
 @NgModule({
-  declarations: [
-    TestComponent
-  ],
+  declarations: [FinishScreenComponent, FinishScreenFailComponent, TestComponent],
   imports: [
     CommonModule,
     TestRoutingModule,
     HttpClientModule,
     DockModule,
     MultiSelectModule,
-    ChipModule, 
+    ChipModule,
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     ProgressSpinnerModule
   ]
 })
-export class TestModule { }
+export class TestModule {}
