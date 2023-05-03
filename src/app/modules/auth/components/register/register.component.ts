@@ -71,6 +71,7 @@ export class RegisterComponent {
     this.authService.signUp(this.RegisterForm.value).subscribe(
       () => {
         console.log('User signed up successfully.');
+        this.router.navigate(["/auth/login"]);
       },
     );
 
