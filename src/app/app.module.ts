@@ -11,9 +11,11 @@ import { AnimateModule } from 'primeng/animate';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule, HttpClientModule, CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })],
   providers: [],
   bootstrap: [AppComponent]
 })
