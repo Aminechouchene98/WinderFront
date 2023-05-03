@@ -52,6 +52,33 @@ export class UserService {
 
 
 
+  forget(body: any) {
+    return this.http.post(this.apiUrl + '/reset', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
+  reset(body: any) {
+    return this.http.post(this.apiUrl + '/reset_password', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
+
+  otp(body: any) {
+    console.log(body);
+
+    return this.http.post(this.apiUrl + '/otp', body, {
+      observe: 'response',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
+
+
+
 
 
 
