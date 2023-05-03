@@ -29,6 +29,8 @@ import { EditPostModalComponent } from './components/post-project/edit-post-moda
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TooltipModule } from 'primeng/tooltip';
+import { ReclamationUserComponent } from './components/reclamation-user/reclamation-user.component';
 
 const PRIME_MODULES = [
   MegaMenuModule,
@@ -49,11 +51,12 @@ const PRIME_MODULES = [
   FileUploadModule,
   AngularEditorModule,
   DynamicDialogModule,
-  AccordionModule
+  AccordionModule,
+  TooltipModule
 ];
 
 @NgModule({
-  declarations: [ProjectComponent, ProjectListComponent, ProjectElementComponent, ProjectDetailsBarComponent, PostProjectComponent, EditPostModalComponent],
+  declarations: [ProjectComponent, ProjectListComponent, ProjectElementComponent, ProjectDetailsBarComponent, PostProjectComponent, EditPostModalComponent, ReclamationUserComponent],
   imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModule]
 })
 export class ProjectModule {}
