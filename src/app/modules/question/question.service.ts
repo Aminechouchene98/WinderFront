@@ -24,4 +24,15 @@ export class QuestionService {
   public deleteQuestion(question_id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/questions/remove-question/${question_id}`);
   }
+
+  public retrieveQuestion(question_id: number): Observable<Question[]> {
+    return this.http.get<Question[]>(`${this.apiServerUrl}/questions/retrieve-question/${question_id}`);
+  }
+
+
+
+
+
+  
+  
 }
