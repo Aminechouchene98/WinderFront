@@ -18,11 +18,12 @@ import { ButtonModule } from 'primeng/button';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { DialogModule } from 'primeng/dialog';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent],
+  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, UsersListComponent],
   imports: [
     FormsModule,
     CommonModule,

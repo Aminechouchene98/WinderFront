@@ -43,6 +43,7 @@ export class AdminComponent {
           {
             label: 'Search',
             icon: 'pi pi-fw pi-users',
+            routerLink: '/admin/users-list',
             items: [
               {
                 label: 'Filter',
@@ -72,7 +73,8 @@ export class AdminComponent {
       },
       {
         label: 'Logout',
-        icon: 'pi pi-fw pi-power-off'
+        icon: 'pi pi-fw pi-power-off',
+        routerLink: '/auth/login',
       }
     ];
   }
