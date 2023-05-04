@@ -21,6 +21,7 @@ export class LoginComponent {
   test1:any;
   public userName: any;
   public token:any;
+  public role: any;
 
   constructor(private router: Router,private fb: FormBuilder, private authService: UserService,private encryptionService:EncryptionService ) {
 
@@ -48,14 +49,25 @@ export class LoginComponent {
     if (userName && password) {
       this.authService.login(userName, password).subscribe(
         data => {
-          console.log("ya welcome ya welcome b si yahya ");
           if ((data as { [key: string]: any })['jwtToken'].length != 0) {
             this.userName = (data as { [key: string]: any })["user"]['userName'];
             this.token = (data as { [key: string]: any })['jwtToken'];
+            this.role = (data as { [key: string]: any })["user"]["role"][0]["roleName"];
             //localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
             localStorage.setItem('token',this.token);
-           // console.log(this.authService.getToken());
-            this.router.navigate(["/project"]);
+
+            localStorage.setItem('role',this.role);
+
+
+            if(localStorage.getItem('role') == 'Admin')
+            {
+              this.router.navigate(["/admin"]);
+            }
+            else
+            {
+              this.router.navigate(["/project"]);
+            }
+
 
           }
 

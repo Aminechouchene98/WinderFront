@@ -17,7 +17,7 @@ export class UserService {
 
   login(userName: string, password: string) {
     const body = { userName, password };
-   return  this.http.post(`${this.apiUrl}/authlogin`, body);
+   return  this.http.post(`${this.apiUrl}/authenticate`, body);
   }
 
 
@@ -98,9 +98,13 @@ export class UserService {
   }
 
 
+
+
   getroles() {
     return this.http.get(this.apiUrl + "/getallroles");
   }
+
+
 
 
 
