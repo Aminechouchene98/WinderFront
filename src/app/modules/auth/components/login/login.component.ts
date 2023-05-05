@@ -7,6 +7,7 @@ import {User} from "../../user";
 import {EncryptionService} from "../../../../shared/encryption.service";
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'winder-login',
   templateUrl: './login.component.html',
@@ -52,14 +53,14 @@ export class LoginComponent {
           if ((data as { [key: string]: any })['jwtToken'].length != 0) {
             this.userName = (data as { [key: string]: any })["user"]['userName'];
             this.token = (data as { [key: string]: any })['jwtToken'];
-            this.role = (data as { [key: string]: any })["user"]["role"][0]["roleName"];
+            this.role = (data as { [key: string]: any })["user"]['role1'];
             //localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
             localStorage.setItem('token',this.token);
 
-            localStorage.setItem('role',this.role);
+            localStorage.setItem('role1',this.role);
 
 
-            if(localStorage.getItem('role') == 'Admin')
+            if(localStorage.getItem('role1') == 'Admin')
             {
               this.router.navigate(["/admin"]);
             }
