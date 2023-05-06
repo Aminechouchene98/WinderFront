@@ -21,6 +21,9 @@ export class LoginComponent {
   test : any;
   test1:any;
   public userName: any;
+  public nom : any;
+  public prenom : any ;
+  public email : any;
   public token:any;
   public role: any;
 
@@ -52,11 +55,17 @@ export class LoginComponent {
         data => {
           if ((data as { [key: string]: any })['jwtToken'].length != 0) {
             this.userName = (data as { [key: string]: any })["user"]['userName'];
+            this.nom = (data as { [key: string]: any })["user"]['nom'];
+            this.prenom = (data as { [key: string]: any })["user"]['prenom'];
+            this.email = (data as { [key: string]: any })["user"]['email'];
             this.token = (data as { [key: string]: any })['jwtToken'];
             this.role = (data as { [key: string]: any })["user"]['role1'];
             //localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
             localStorage.setItem('token',this.token);
             localStorage.setItem('role1',this.role);
+            localStorage.setItem('nom',this.nom);
+            localStorage.setItem('prenom',this.prenom);
+            localStorage.setItem('email',this.email);
 
             if(localStorage.getItem('role1') == 'Admin')
             {
