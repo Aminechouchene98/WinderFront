@@ -126,6 +126,11 @@ export class UserService {
   }
 
 
+  // I will use it in pie chart
+  countUsersByRole(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/count-by-role`);
+  }
+
 
 
 

@@ -50,8 +50,9 @@ export class AdminComponent {
                 icon: 'pi pi-fw pi-filter',
                 items: [
                   {
-                    label: 'Print',
-                    icon: 'pi pi-fw pi-print'
+                    label: 'Users Chart',
+                    icon: 'pi pi-fw pi-chart-line',
+                    routerLink:'/admin/users-pie'
                   }
                 ]
               },

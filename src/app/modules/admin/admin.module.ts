@@ -19,11 +19,12 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { DialogModule } from 'primeng/dialog';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, UsersListComponent],
+  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, UsersListComponent, PieChartComponent],
   imports: [
     FormsModule,
     CommonModule,
