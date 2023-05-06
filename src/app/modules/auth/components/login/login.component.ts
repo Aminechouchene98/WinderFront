@@ -56,9 +56,7 @@ export class LoginComponent {
             this.role = (data as { [key: string]: any })["user"]['role1'];
             //localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
             localStorage.setItem('token',this.token);
-
             localStorage.setItem('role1',this.role);
-
 
             if(localStorage.getItem('role1') == 'Admin')
             {
@@ -68,6 +66,7 @@ export class LoginComponent {
             {
               this.router.navigate(["/project"]);
             }
+
 
 
           }

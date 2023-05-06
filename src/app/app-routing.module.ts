@@ -7,6 +7,8 @@ import {ProjectListComponent} from "./modules/project/components/project-list/pr
 import {ResetPasswordComponent} from "./modules/reset-password/reset-password/reset-password.component";
 import {ResetComponent} from "./modules/reset/reset/reset.component";
 import {DisplayUsersComponent} from "./modules/display-users/display-users.component";
+import {AdminComponent} from "./modules/admin/admin.component";
+import {AdminAuthGuardGuard} from "./modules/admin/shared/admin-auth-guard.guard";
 
 const routes: Routes = [
   {
@@ -35,7 +37,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule)
+    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AdminAuthGuardGuard]
   },
   {
     path: 'tests',
