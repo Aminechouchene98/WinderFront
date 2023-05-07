@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {DialogService} from "primeng/dynamicdialog";
 import {ProfileComponent} from "./modules/profile/profile.component";
+import {UserService} from "./shared/user.service";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
   title = 'WINDER_FRONT';
   items!: any[];
 
-  constructor(public router: Router,private dialogService: DialogService) {}
+  constructor(public router: Router,private dialogService: DialogService,private userservice : UserService) {}
 
   ngOnInit(): void {
     this.items = [
@@ -37,6 +38,11 @@ export class AppComponent {
         label: 'Profile',
         icon: 'pi pi-fw pi-user',
         command: () => this.showProfileDialog()
+      },
+      {
+        label: 'Logout',
+        icon: 'pi pi-fw pi-power-off',
+        command: () => this.userservice.logoutUser()
       }
     ];
   }

@@ -40,6 +40,10 @@ export class UserService {
 
   logoutUser() {
     localStorage.removeItem('token');
+    localStorage.removeItem('nom');
+    localStorage.removeItem('role1');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('email');
     this.router.navigate(['/auth/login'])
   }
 
