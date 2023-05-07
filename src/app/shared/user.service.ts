@@ -44,6 +44,8 @@ export class UserService {
     localStorage.removeItem('role1');
     localStorage.removeItem('prenom');
     localStorage.removeItem('email');
+    localStorage.removeItem('gender');
+    localStorage.removeItem('userName');
     this.router.navigate(['/auth/login'])
   }
 
@@ -83,11 +85,18 @@ export class UserService {
   }
 
   // Crud User w fonctionalité avancé
-
+/*
   update(body: any) {
     return this.http.put(this.apiUrl + '/updateUser', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }*/
+
+
+  update(user: any, username: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/updateUser/${username}`, user, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
 
@@ -100,6 +109,11 @@ export class UserService {
   public getuser(username: any) {
     return this.http.get(this.apiUrl + "/getUser/" + username);
   }
+
+/*
+  getuser(username: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getUser/${username}`);
+  }*/
 
 
 
@@ -134,6 +148,7 @@ export class UserService {
   countUsersByRole(): Observable<any> {
     return this.http.get(`${this.apiUrl}/count-by-role`);
   }
+
 
 
 

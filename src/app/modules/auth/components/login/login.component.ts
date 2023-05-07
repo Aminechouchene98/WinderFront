@@ -26,6 +26,7 @@ export class LoginComponent {
   public email : any;
   public token:any;
   public role: any;
+  public gender : any;
 
   constructor(private router: Router,private fb: FormBuilder, private authService: UserService,private encryptionService:EncryptionService ) {
 
@@ -60,12 +61,15 @@ export class LoginComponent {
             this.email = (data as { [key: string]: any })["user"]['email'];
             this.token = (data as { [key: string]: any })['jwtToken'];
             this.role = (data as { [key: string]: any })["user"]['role1'];
+            this.gender = (data as { [key: string]: any })["user"]['gender'];
             //localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
             localStorage.setItem('token',this.token);
             localStorage.setItem('role1',this.role);
             localStorage.setItem('nom',this.nom);
             localStorage.setItem('prenom',this.prenom);
             localStorage.setItem('email',this.email);
+            localStorage.setItem('userName',this.userName);
+            localStorage.setItem('gender',this.gender);
 
             if(localStorage.getItem('role1') == 'Admin')
             {

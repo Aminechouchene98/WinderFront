@@ -8,6 +8,7 @@ import {ResetPasswordComponent} from "./modules/reset-password/reset-password/re
 import {ResetComponent} from "./modules/reset/reset/reset.component";
 import {AdminComponent} from "./modules/admin/admin.component";
 import {AdminAuthGuardGuard} from "./modules/admin/shared/admin-auth-guard.guard";
+import {ProfileDetailsComponent} from "./modules/profile-details/profile-details.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path : 'reset',
     component : ResetComponent
+  },
+  {
+    path : 'profile-details',
+    component : ProfileDetailsComponent,
+    canActivate:[AuthguardGuard]
   },
   {
     path : 'reset-password',
