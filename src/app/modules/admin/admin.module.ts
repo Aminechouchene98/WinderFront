@@ -18,11 +18,17 @@ import { ButtonModule } from 'primeng/button';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { DialogModule } from 'primeng/dialog';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import {ToastModule} from "primeng/toast";
+import {ToolbarModule} from "primeng/toolbar";
+import {TagModule} from "primeng/tag";
+import {RatingModule} from "primeng/rating";
+import {FileUploadModule} from "primeng/fileupload";
+import { ReclamationDetailsComponent } from './reclamation-details/reclamation-details.component';
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent],
+  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, ReclamationDetailsComponent],
   imports: [
     FormsModule,
     CommonModule,
@@ -31,7 +37,12 @@ const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, Ta
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    ToastModule,
+    ToolbarModule,
+    TagModule,
+    RatingModule,
+    FileUploadModule
   ]
 })
 export class AdminModule {}

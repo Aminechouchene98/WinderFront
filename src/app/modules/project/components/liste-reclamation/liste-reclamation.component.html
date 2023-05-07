@@ -1,0 +1,22 @@
+<h2>Liste des réclamations</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Contenu</th>
+    <th>Type</th>
+    <th>Date d'envoi</th>
+    <th>État</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let reclamation of reclamations">
+    <td>{{ reclamation.idRec }}</td>
+    <td>{{ reclamation.contenuRec }}</td>
+    <td>{{ reclamation.type }}</td>
+    <td>{{ reclamation.sendingDate | date }}</td>
+    <td>{{ reclamation.etat }}</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,1 +1,37 @@
-<p>reclamation-user works!</p>
+<form class="reclamation-form" (ngSubmit)="addReclamation()" #reclamationForm="ngForm">
+<h2>Add Reclamation</h2>
+  <div class="form-group">
+
+    <div class="card flex justify-content-center">
+      <div class="flex flex-column gap-2">
+        <label htmlFor="type">Type</label>
+        <input pInputText name="type" id="type" aria-describedby="username-help" [(ngModel)]="reclamation.type" />
+        <small id="type-help">Enter your type of reclamation</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+
+
+    <div class="card flex justify-content-center">
+      <div class="flex flex-column gap-2">
+        <label htmlFor="contenuRec">Contenu</label>
+        <input pInputText name="contenuRec" id="contenuRec" aria-describedby="username-help" [(ngModel)]="reclamation.contenuRec" />
+        <small id="username-help">Enter your content of reclamation</small>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="button-group">
+    <button type="submit" class="btn btn-primary" [disabled]="reclamationForm.invalid">Ajouter la réclamation</button>
+    <br><br>    <br>
+
+    <button type="button" class="btn btn-secondary" (click)="resetForm()">Réinitialiser</button>
+    <br><br><br><br>
+    <a class="btn btn-secondary" routerLink="/reclamations">Liste des réclamations</a>
+  </div>
+</form>

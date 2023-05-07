@@ -4,12 +4,17 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import {AuthguardGuard} from "./shared/authguard.guard";
 import {ProjectComponent} from "./modules/project/project.component";
 import {ProjectListComponent} from "./modules/project/components/project-list/project-list.component";
+import {ReclamationDetailsComponent} from "./modules/admin/reclamation-details/reclamation-details.component";
 
 const routes: Routes = [
   {
     path: '',
     component: LandingPageComponent
   },
+  { path: 'reclamations/:id',
+    component: ReclamationDetailsComponent },
+
+
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)

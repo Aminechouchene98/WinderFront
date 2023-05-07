@@ -1,0 +1,24 @@
+<div *ngIf="reclamation">
+  <h2>{{ reclamation.type }}</h2>
+  <p>Type: {{ reclamation.contenuRec }}</p>
+  <p>Date d'envoi: {{ reclamation.sendingDate | date }}</p>
+  <!-- Affichez les autres propriétés de la réclamation selon vos besoins -->
+</div>
+
+<div *ngIf="!reclamation">
+  <p>Chargement des détails de la réclamation...</p>
+</div>
+
+
+
+
+  <!-- Formulaire de réponse -->
+  <h2>Réponse de l'admin</h2>
+  <form (ngSubmit)="submitResponse()" #responseForm="ngForm">
+    <textarea name="description" [(ngModel)]="response.description" required></textarea>
+    <br>
+
+    <button type="submit" [disabled]="responseForm.invalid">Envoyer la réponse</button>
+
+  </form>
+
