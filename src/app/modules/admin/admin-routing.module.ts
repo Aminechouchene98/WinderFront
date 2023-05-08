@@ -5,6 +5,8 @@ import { AdminComponent } from './admin.component';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import {UsersListComponent} from "./users-list/users-list.component";
+import {PieChartComponent} from "./pie-chart/pie-chart.component";
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
       {
         path: 'projects-list',
         component: ProjectListComponent
+      },
+      {
+        path : 'users-list',
+        component : UsersListComponent
+      },
+      {
+        path : 'users-pie',
+        component : PieChartComponent
       },
       {
         path: 'reclamation',

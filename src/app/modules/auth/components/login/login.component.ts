@@ -7,6 +7,7 @@ import {User} from "../../user";
 import {EncryptionService} from "../../../../shared/encryption.service";
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'winder-login',
   templateUrl: './login.component.html',
@@ -20,7 +21,12 @@ export class LoginComponent {
   test : any;
   test1:any;
   public userName: any;
+  public nom : any;
+  public prenom : any ;
+  public email : any;
   public token:any;
+  public role: any;
+  public gender : any;
 
   constructor(private router: Router,private fb: FormBuilder, private authService: UserService,private encryptionService:EncryptionService ) {
 
@@ -48,14 +54,33 @@ export class LoginComponent {
     if (userName && password) {
       this.authService.login(userName, password).subscribe(
         data => {
-          console.log("ya welcome ya welcome b si yahya ");
           if ((data as { [key: string]: any })['jwtToken'].length != 0) {
             this.userName = (data as { [key: string]: any })["user"]['userName'];
+            this.nom = (data as { [key: string]: any })["user"]['nom'];
+            this.prenom = (data as { [key: string]: any })["user"]['prenom'];
+            this.email = (data as { [key: string]: any })["user"]['email'];
             this.token = (data as { [key: string]: any })['jwtToken'];
+            this.role = (data as { [key: string]: any })["user"]['role1'];
+            this.gender = (data as { [key: string]: any })["user"]['gender'];
             //localStorage.setItem('data', this.encryptionService.encrypt({ id: this.userName, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
             localStorage.setItem('token',this.token);
-           // console.log(this.authService.getToken());
-            this.router.navigate(["/project"]);
+            localStorage.setItem('role1',this.role);
+            localStorage.setItem('nom',this.nom);
+            localStorage.setItem('prenom',this.prenom);
+            localStorage.setItem('email',this.email);
+            localStorage.setItem('userName',this.userName);
+            localStorage.setItem('gender',this.gender);
+
+            if(localStorage.getItem('role1') == 'Admin')
+            {
+              this.router.navigate(["/admin"]);
+            }
+            else
+            {
+              this.router.navigate(["/project"]);
+            }
+
+
 
           }
 

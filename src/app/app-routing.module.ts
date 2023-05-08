@@ -6,7 +6,9 @@ import {ProjectComponent} from "./modules/project/project.component";
 import {ProjectListComponent} from "./modules/project/components/project-list/project-list.component";
 import {ResetPasswordComponent} from "./modules/reset-password/reset-password/reset-password.component";
 import {ResetComponent} from "./modules/reset/reset/reset.component";
-import {DisplayUsersComponent} from "./modules/display-users/display-users.component";
+import {AdminComponent} from "./modules/admin/admin.component";
+import {AdminAuthGuardGuard} from "./modules/admin/shared/admin-auth-guard.guard";
+import {ProfileDetailsComponent} from "./modules/profile-details/profile-details.component";
 
 const routes: Routes = [
   {
@@ -22,20 +24,23 @@ const routes: Routes = [
     component : ResetComponent
   },
   {
+    path : 'profile-details',
+    component : ProfileDetailsComponent,
+    canActivate:[AuthguardGuard]
+  },
+  {
     path : 'reset-password',
     component : ResetPasswordComponent
   },
   {
-    path : 'display',
-    component : DisplayUsersComponent,canActivate:[AuthguardGuard]
-  },
-  {
     path: 'project',
-    loadChildren: () => import('./modules/project/project.module').then((m) => m.ProjectModule)
+    loadChildren: () => import('./modules/project/project.module').then((m) => m.ProjectModule),
+    canActivate:[AuthguardGuard]
   },
   {
     path: 'admin',
-    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule)
+    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AdminAuthGuardGuard]
   },
   {
     path: 'tests',

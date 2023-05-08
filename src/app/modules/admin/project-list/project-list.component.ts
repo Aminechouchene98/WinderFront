@@ -30,4 +30,5 @@ export class ProjectListComponent {
       this.loadProjects();
     });
   }
+
 }

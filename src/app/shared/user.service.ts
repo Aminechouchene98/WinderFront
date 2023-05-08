@@ -17,7 +17,7 @@ export class UserService {
 
   login(userName: string, password: string) {
     const body = { userName, password };
-   return  this.http.post(`${this.apiUrl}/authlogin`, body);
+   return  this.http.post(`${this.apiUrl}/authenticate`, body);
   }
 
 
@@ -40,6 +40,12 @@ export class UserService {
 
   logoutUser() {
     localStorage.removeItem('token');
+    localStorage.removeItem('nom');
+    localStorage.removeItem('role1');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('email');
+    localStorage.removeItem('gender');
+    localStorage.removeItem('userName');
     this.router.navigate(['/auth/login'])
   }
 
@@ -79,11 +85,18 @@ export class UserService {
   }
 
   // Crud User w fonctionalité avancé
-
+/*
   update(body: any) {
     return this.http.put(this.apiUrl + '/updateUser', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }*/
+
+
+  update(user: any, username: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/updateUser/${username}`, user, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
 
@@ -97,10 +110,19 @@ export class UserService {
     return this.http.get(this.apiUrl + "/getUser/" + username);
   }
 
+/*
+  getuser(username: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getUser/${username}`);
+  }*/
+
+
+
 
   getroles() {
     return this.http.get(this.apiUrl + "/getallroles");
   }
+
+
 
 
 
@@ -119,6 +141,12 @@ export class UserService {
 
   updateUser(user: User, userName: string): Observable<User> {
     return this.http.put<User>(`${this.apiUrl}/updateUser/${userName}`, user);
+  }
+
+
+  // I will use it in pie chart
+  countUsersByRole(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/count-by-role`);
   }
 
 

@@ -28,6 +28,7 @@ export class RegisterComponent {
       userName: ['', [Validators.required, Validators.min(6)]],
       nom: ['', [Validators.required, Validators.min(6)]],
       prenom: ['', [Validators.required, Validators.min(6)]],
+      role1: ['', [Validators.required]]
     });
   }
 
@@ -49,6 +50,10 @@ export class RegisterComponent {
 
     const genderControl = this.RegisterForm.get('gender');
     const gender = genderControl ? genderControl.value : null;
+
+    const role1Control = this.RegisterForm.get('role1');
+    const role1 = role1Control ? role1Control.value : null;
+
 
     const userNameControl = this.RegisterForm.get('userName');
     const UserName = userNameControl ? userNameControl.value : null;

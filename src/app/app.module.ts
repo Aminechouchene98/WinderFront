@@ -18,11 +18,12 @@ import {ResetPasswordComponent} from "./modules/reset-password/reset-password/re
 import {NgProgressModule} from "ngx-progressbar";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ResetComponent } from './modules/reset/reset/reset.component';
-import { DisplayUsersComponent } from './modules/display-users/display-users.component';
 import {SharedModule} from "./shared/shared.module";
+import { ProfileComponent } from './modules/profile/profile.component';
+import { ProfileDetailsComponent } from './modules/profile-details/profile-details.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent, DisplayUsersComponent],
+  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent, ProfileComponent, ProfileDetailsComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule, HttpClientModule, NgProgressModule, ReactiveFormsModule, FormsModule, SharedModule],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
