@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SkillService } from 'src/app/shared/services/project/skill.service';
 
 @Component({
   selector: 'winder-details-test',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./details-test.component.scss']
 })
 export class DetailsTestComponent {
+  test:any
+
+  constructor(private config: DynamicDialogConfig,  public ref: DynamicDialogRef, private ss: SkillService) {
+    
+    this.test = this.config.data.data
+  }
+
+  ngOnInit(){
+    console.log(this.test);
+    
+  }
 
 }

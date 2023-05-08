@@ -61,6 +61,8 @@ export class TestComponent implements OnInit {
           value: 'right'
       }
   ];
+  requiredScore!: number;
+  isButtonDisabled: boolean = false;
   
   
   constructor(private route: ActivatedRoute, 
@@ -172,10 +174,10 @@ export class TestComponent implements OnInit {
           });
         },
       });
-    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score == this.MaxScore ) {
+    }else if (this.currentQuestionIndex === this.questions.length -1 && (this.score == this.MaxScore || this.score >= this.requiredScore) ) {
       this.isLastQuestion = true;
       this.finishQuizSuccess();
-    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score != this.MaxScore ) {
+    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score < this.requiredScore ) {
       this.isLastQuestion = true;
       this.finishQuizFail();
     }
@@ -214,10 +216,13 @@ export class TestComponent implements OnInit {
     }
   }
 */
-
+  i: number =0;
 
    updateQuestion() {
-    const selectedQuestion = this.questionC.nativeElement.innerHTML;
+    this.i++;
+    if (this.i <= 2){
+
+      const selectedQuestion = this.questionC.nativeElement.innerHTML;
    this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
     const matchingQuestion = response.find((question) => question.text === selectedQuestion);
     if (matchingQuestion) {
@@ -229,16 +234,20 @@ export class TestComponent implements OnInit {
       });
     }
   });
+    } else{
+      this.isButtonDisabled = true;
+    }
+    
 }
 
   public getQuestionsOfTest(): void {
     this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
       this.questions = response;
       this.timer = this.questions.length * 1 * 60;
-      this.MaxScore = this.questions.length;
+      this.MaxScore = this.questions.length * 100;
+      this.requiredScore = (70 / 100) * this.MaxScore;
       console.log(this.questions);
       this.startTimer();});
-   
    
   }
 
@@ -269,7 +278,7 @@ export class TestComponent implements OnInit {
   calculateScore() {
     for (let question of this.questions) {
       if (question.correct_option === this.selectedAnswer) {
-        this.score++ ;
+        this.score = this.score + 100 ;
       }
     }
   }

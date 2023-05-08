@@ -4,35 +4,51 @@ import { TestService } from '../../../test.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/modules/question/question';
 import { Option } from 'src/app/modules/option/option';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DetailsTestComponent } from '../details-test/details-test.component';
 
 @Component({
   selector: 'winder-list-test',
   templateUrl: './list-test.component.html',
-  styleUrls: ['./list-test.component.scss']
+  styleUrls: ['./list-test.component.scss'],
+  providers: [DialogService]
+
 })
-export class ListTestComponent implements OnInit {
+export class ListTestComponent  {
   tests: Test[] = [];
   test1!: Test;
   layout: string = 'list';
-  questions: Question[] = [];
-  test_id!: number;
-  question_id!: number;
 
-  constructor(private route: ActivatedRoute, 
+
+
+  constructor(private route: ActivatedRoute,
+    public dialogService: DialogService, 
     private router: Router, 
     private testService: TestService){
     }
-    
+    ref!: DynamicDialogRef;
+
   ngOnInit(): void {
     
     this.retrieveTests();
   }
+
+  show(data:any) {
+    this.ref = this.dialogService.open(DetailsTestComponent, {
+        header: 'Select a Product',
+        width: '70%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: true,
+        data: { data:data  }
+
+    });
+  }
   visible!: boolean;
 
-  showDialog() {
-    this.test_id = +Number(this.route.snapshot.paramMap.get('test_id'));
+  showDialog(test_id: number) {
       this.visible = true;
-      this.testService.retrieveTest(this.test_id).subscribe((response: Test) => {
+      this.testService.retrieveTest(test_id).subscribe((response: Test) => {
         this.test1 = response;
         });
   }

@@ -88,6 +88,9 @@ export class EditTestComponent implements OnInit{
   }
 
   questions(): FormArray {
+
+    console.log(this.postForm.get("questions") as FormArray);
+    
     return this.postForm.get("questions") as FormArray
   }
 
