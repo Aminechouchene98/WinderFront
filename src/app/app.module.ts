@@ -14,17 +14,31 @@ import { QuestionAdminComponent } from './modules/question/question-admin/compon
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FilterPipe } from './shared/pipes/filter.pipe';
-import {ResetPasswordComponent} from "./modules/reset-password/reset-password/reset-password.component";
-import {NgProgressModule} from "ngx-progressbar";
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ResetPasswordComponent } from './modules/reset-password/reset-password/reset-password.component';
+import { NgProgressModule } from 'ngx-progressbar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResetComponent } from './modules/reset/reset/reset.component';
-import {SharedModule} from "./shared/shared.module";
+import { SharedModule } from './shared/shared.module';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { ProfileDetailsComponent } from './modules/profile-details/profile-details.component';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent, ProfileComponent, ProfileDetailsComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule, HttpClientModule, NgProgressModule, ReactiveFormsModule, FormsModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    DockModule,
+    AnimateModule,
+    MegaMenuModule,
+    HttpClientModule,
+    NgProgressModule,
+    ReactiveFormsModule,
+    FormsModule,
+    SharedModule,
+    DialogModule
+  ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })

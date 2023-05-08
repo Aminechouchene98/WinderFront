@@ -252,9 +252,9 @@ export class PostProjectComponent implements OnInit {
       experience: this.postForm.controls['experience'].value
     };
     console.log(body);
-    /*this.ps.postProject(body).subscribe((res) => {
+    this.ps.postProject(body).subscribe((res) => {
       console.log(res);
       this.router.navigate(['/project']);
-    });*/
+    });
   }
 }

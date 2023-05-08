@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import {FormBuilder} from "@angular/forms";
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import {EncryptionService} from "./encryption.service";
-import {User} from "../modules/auth/user";
+import { EncryptionService } from './encryption.service';
+import { User } from '../modules/auth/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,27 +13,23 @@ import {User} from "../modules/auth/user";
 export class UserService {
   public data: any;
   private apiUrl = 'http://localhost:8090'; // replace with your API endpoint
-  constructor(private encryptionService: EncryptionService,private http: HttpClient, private router: Router) { }
+  constructor(private encryptionService: EncryptionService, private http: HttpClient, private router: Router) {}
 
   login(userName: string, password: string) {
     const body = { userName, password };
-   return  this.http.post(`${this.apiUrl}/authenticate`, body);
+    return this.http.post(`${this.apiUrl}/authenticate`, body);
   }
 
-
-
-  signUp(body:FormBuilder): Observable<any> {
-    return this.http.post(`${this.apiUrl}/registerNewUser`,body);
+  signUp(body: FormBuilder): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registerNewUser`, body);
   }
-
 
   getToken() {
     console.log(localStorage.getItem('data')!);
     if (localStorage.getItem('data') != null) {
       this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
       console.log(this.data);
-      return this.data["token"];
-
+      return this.data['token'];
     }
     return null;
   }
@@ -46,19 +42,12 @@ export class UserService {
     localStorage.removeItem('email');
     localStorage.removeItem('gender');
     localStorage.removeItem('userName');
-    this.router.navigate(['/auth/login'])
+    this.router.navigate(['/auth/login']);
   }
 
-
-
-  IsLoggedIn()
-  {
+  IsLoggedIn() {
     return !!localStorage.getItem('token');
   }
-
-
-
-
 
   forget(body: any) {
     return this.http.post(this.apiUrl + '/reset', body, {
@@ -74,7 +63,6 @@ export class UserService {
     });
   }
 
-
   otp(body: any) {
     console.log(body);
 
@@ -85,7 +73,7 @@ export class UserService {
   }
 
   // Crud User w fonctionalité avancé
-/*
+  /*
   update(body: any) {
     return this.http.put(this.apiUrl + '/updateUser', body, {
       observe: 'body',
@@ -93,67 +81,45 @@ export class UserService {
     });
   }*/
 
-
   update(user: any, username: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/updateUser/${username}`, user, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
 
-
   public getusernames() {
-    return this.http.get(this.apiUrl + "/usernames");
+    return this.http.get(this.apiUrl + '/usernames');
   }
-
 
   public getuser(username: any) {
-    return this.http.get(this.apiUrl + "/getUser/" + username);
+    return this.http.get(this.apiUrl + '/getUser/' + username);
   }
 
-/*
+  /*
   getuser(username: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/getUser/${username}`);
   }*/
 
-
-
-
   getroles() {
-    return this.http.get(this.apiUrl + "/getallroles");
+    return this.http.get(this.apiUrl + '/getallroles');
   }
-
-
-
-
 
   // affichage All users
   getusers() {
-    return this.http.get(this.apiUrl + "/users");
+    return this.http.get(this.apiUrl + '/users');
   }
-
-
 
   deleteUser(userName: string) {
     const url = `${this.apiUrl}/delete/${userName}`;
     return this.http.delete(url);
   }
 
-
   updateUser(user: User, userName: string): Observable<User> {
     return this.http.put<User>(`${this.apiUrl}/updateUser/${userName}`, user);
   }
-
 
   // I will use it in pie chart
   countUsersByRole(): Observable<any> {
     return this.http.get(`${this.apiUrl}/count-by-role`);
   }
-
-
-
-
-
-
-
-
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {DialogService} from "primeng/dynamicdialog";
-import {ProfileComponent} from "./modules/profile/profile.component";
-import {UserService} from "./shared/user.service";
+import { DialogService } from 'primeng/dynamicdialog';
+import { ProfileComponent } from './modules/profile/profile.component';
+import { UserService } from './shared/user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'WINDER_FRONT';
   items!: any[];
 
-  constructor(public router: Router,private dialogService: DialogService,private userservice : UserService) {}
+  constructor(public router: Router, private dialogService: DialogService, private userservice: UserService) {}
 
   ngOnInit(): void {
     this.items = [
@@ -37,7 +37,7 @@ export class AppComponent {
       {
         label: 'Profile',
         icon: 'pi pi-fw pi-user',
-        command: () => this.showProfileDialog()
+        command: () => (this.visible = true)
       },
       {
         label: 'Logout',
@@ -47,18 +47,19 @@ export class AppComponent {
     ];
   }
 
+  name = localStorage.getItem('nom');
+  prenom = localStorage.getItem('prenom');
+  email = localStorage.getItem('email');
+  visible!: boolean;
 
-
+  showDialog() {
+    this.visible = true;
+  }
   showProfileDialog() {
     const ref = this.dialogService.open(ProfileComponent, {
       header: 'My Profile',
       width: '300px',
       closable: true
     });
-
   }
-
-
-
-
 }
