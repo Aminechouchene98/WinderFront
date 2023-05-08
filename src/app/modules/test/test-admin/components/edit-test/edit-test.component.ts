@@ -1,33 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../../../test.service';
-import { QuestionService } from 'src/app/modules/question/question.service';
-import { Observable } from 'rxjs';
-import { OptionService } from 'src/app/modules/option/Option.service';
 import { Test } from '../../../test';
 import { Question } from 'src/app/modules/question/question';
 
+
 @Component({
-  selector: 'winder-post-test',
-  templateUrl: './post-test.component.html',
-  styleUrls: ['./post-test.component.scss'],
-  providers: [DialogService]
+  selector: 'winder-edit-test',
+  templateUrl: './edit-test.component.html',
+  styleUrls: ['./edit-test.component.scss']
 })
-export class PostTestComponent implements OnInit{
-  //questions!: Observable<any>;
-  text!: Question;
-  constructor(private fb: FormBuilder, public dialogService: DialogService, private testService: TestService, private router: Router) {
+export class EditTestComponent implements OnInit{
+  test_id!: number;
+  test!: Test;
+  questions1: Question[] = [];
+  constructor(private fb: FormBuilder, private testService: TestService,private route: ActivatedRoute, private router: Router) {
     }
   ngOnInit(): void {
-    this.initPostForm();
-    /*
-    this.questions = this.questionService.getQuestions();
-    this.questions.subscribe((res: any) => {
-      console.log(res);
-    });*/
-   
+    
+    this.test_id = +Number(this.route.snapshot.paramMap.get('test_id'));
+    this.testService.retrieveTest(this.test_id).subscribe((response: Test) => {
+      this.test = response;
+      this.initPostForm();
+      });
+      this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
+        this.questions1 = response;})
   }
 
   stacks= [
@@ -75,14 +74,17 @@ export class PostTestComponent implements OnInit{
     'Expert'
   ]
 
+  
+
   initPostForm() {
     this.postForm = this.fb.group({
-      name: ['', Validators.required],
-      stack: ['', Validators.required],
-      description: ['', Validators.required],
-      level: ['', Validators.required],
+      name: [this.test.name, Validators.required],
+      description: [this.test.description, Validators.required],
+      stack: [this.test.stack, Validators.required], 
+      level: [this.test.level, Validators.required],
       questions: this.fb.array([])
     });
+    console.log(this.test)
   }
 
   questions(): FormArray {
@@ -122,42 +124,13 @@ export class PostTestComponent implements OnInit{
   removeQuestionOption(questIndex:number,optionIndex:number) {
     this.questionOptions(questIndex).removeAt(optionIndex);
   }
-
- 
+  
 
   postForm!: FormGroup;
-  step = 1;
-  progress = 20;
-
-  stepLabel = ['Title', 'Description', 'Stack', 'Level', 'Question', 'Submit'];
-  leftPanelHeader = [
-    'Write a title for your new test',
-    'Write a description for your test',
-    'Next, choose the stack of your test.',
-    'Choose the level of difficulty of your test.',
-    'Last step, Add questions as well as their options to your test!'
-  ];
-
-  rightPanelHeader = ['What is the title of your new test?', 'Describe your test', 'What stack would your Test be about ?', 'Who is this meant for?'];
-
-  leftPanelContent = [
-    '',
-    '',
-    '',
-    '',
-    'Add as many questions and options as you like :)'
-  ];
+  
   formGroupNames = ['name', 'description', 'stack', 'level', 'questions'];
 
-  setStepForward() {
-    this.step++;
-    this.progress = this.progress + 20;
-  }
 
-  setStepBack() {
-    this.step--;
-    this.progress = this.progress - 20;
-  }
   isMessageTooShort() {
     return this.postForm.controls['description'].value.length < 50;
   }
@@ -169,7 +142,7 @@ export class PostTestComponent implements OnInit{
   }
 
   redirectToTest() {
-    this.router.navigate(['/tests/list-test']);
+    this.router.navigate(['/tests']);
   }
  
   postTest() {
@@ -184,9 +157,9 @@ export class PostTestComponent implements OnInit{
       questions: this.postForm.controls['questions'].value
     };
     //console.log(body);
-   this.testService.createTestWithQuestionsAndOptions(body).subscribe((res) => {
+   this.testService.updateTest(this.test_id,body).subscribe((res) => {
       console.log(res);
     });
-    this.redirectToTest();
   }
+
 }

@@ -15,8 +15,9 @@ import { FinishScreenComponent } from './modules/test/finish-screen/finish-scree
 import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { PostTestComponent } from './modules/test/test-admin/components/post-test/post-test.component';
+import { RedirectToTestComponent } from './modules/test/redirect-to-test/redirect-to-test.component';
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, QuestionAdminComponent, FinishScreenComponent, FinishScreenFailComponent],
+  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, QuestionAdminComponent, FinishScreenComponent, FinishScreenFailComponent, RedirectToTestComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, DockModule, AnimateModule, MegaMenuModule,HttpClientModule],
   providers: [HttpClientModule],
 

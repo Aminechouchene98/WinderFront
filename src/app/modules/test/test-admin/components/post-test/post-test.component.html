@@ -10,7 +10,7 @@
         <h2>{{ leftPanelHeader[step - 1] }}</h2>
         <p>{{ leftPanelContent[step - 1] }}</p>
 
-        <ng-container *ngIf="step === 5" class="block">
+        <ng-container *ngIf="step === 1" class="block">
       
         </ng-container>
       </div>
@@ -47,23 +47,61 @@
           </ng-container>
 
           <ng-container *ngIf="step === 3" class="block">
-              <p-dropdown  class="w-full" display="chip" [options]="stacks" formControlName="stack" placeholder="Select a Stack" ></p-dropdown>
+              <p-dropdown  class="w-full" autoWidth="false" [style]="{'width':'100%'}"  [options]="stacks" formControlName="stack" placeholder="Select a Stack" ></p-dropdown>
           </ng-container>
 
           <ng-container class="grid grid-cols-12" *ngIf="step === 4">
             <div class="card flex justify-content-center">
-              <p-dropdown class="w-full"  display="chip" [options]="levels" formControlName="level" placeholder="Select a Level" ></p-dropdown>
+              <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}" [options]="levels" formControlName="level" placeholder="Select a Level" ></p-dropdown>
           </div>
           </ng-container>
 
           <ng-container *ngIf="step === 5">
+            <!--
             <p-multiSelect class="w-full" [filter]="true" display="chip" [options]="questions| async"
-              formControlName="questions" optionLabel="text"></p-multiSelect>
-
+              formControlName="questions" optionLabel="text"></p-multiSelect> 
+             
             <div class="grid">
               <small *ngIf="!postForm.controls['questions'].valid && postForm.controls['questions'].dirty"
                 id="username-help" class="p-error mt-1">At least 1 question is required</small>     
-            </div>
+            </div>-->
+          
+           <form [formGroup]="postForm"  (ngSubmit)="onSubmit()">
+            
+              <div formArrayName="questions">
+                <div *ngFor="let question of questions().controls; let questIndex=index">
+                  <div [formGroupName]="questIndex">
+                    <p>question :</p>
+                    <input class="w-full" type="text" formControlName="text" pInputText />
+                    <p>Correct answer:</p>
+                    <input class="w-full" type="text" formControlName="correct_option" pInputText />
+                    <br> <br>
+                    <button class="button-ab" (click)="removeQuestion(questIndex)">Remove question</button>
+                    <br>
+                    <br>
+                    <div formArrayName="options">
+                      <div *ngFor="let option of questionOptions(questIndex).controls; let optionIndex=index">
+                        <div [formGroupName]="optionIndex">   
+                         <p>option for your question :</p>
+                          <input type="text" formControlName="text" pInputText />
+                          <br> <br>
+                          <button class="button-ab" (click)="removeQuestionOption(questIndex,optionIndex)">Remove option</button>
+                          <br>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="button-aa" (click)="addQuestionOption(questIndex)">Add option</button>
+                    <br>
+                    <br>
+                  </div>
+                </div>
+                <button class="button-aa" (click)="addQuestion()">Add question</button>
+                <br>
+                <br>
+              </div>
+           </form>
+            
           </ng-container>
         </div>
 
@@ -71,15 +109,17 @@
           <label class="w-full text-left text-sm font-medium">Tips</label>
 
           <ul id="disc">
-            <li>Naming your project in a proficient way will help you in the long run</li>
+            <li>Naming your test in a proficient way will help you in the long run</li>
             <li>It is not recommended to choose short titles</li>
           </ul>
         </ng-container>
 
-        <ng-container *ngIf="step === 2" class="block">
+        <ng-container *ngIf="step === 2" class="block"> 
+          <!--
           <div class="card align-items-center mt-7 flex flex-wrap gap-2">
             <p-chip *ngFor="let question of questions | async" [label]="question.label"></p-chip>
           </div>
+          -->
         </ng-container>
       </form>
     </div>
@@ -89,33 +129,23 @@
       <p-progressBar class="custom-progress" [value]="progress" [style]="{ height: '6px ' }"> </p-progressBar>
     </div>
     <div class="button-container">
-      <p-button *ngIf="step > 1" label="Back" icon="pi pi-arrow-left"
+      <p-button *ngIf="step > 1 && step <5" label="Back" icon="pi pi-arrow-left"
         styleClass="p-button-outlined p-button-success left-button" (onClick)="setStepBack()"></p-button>
-      <p-button [disabled]="!this.postForm.controls[formGroupNames[step - 1]].valid"
+      <p-button *ngIf="step < 5" [disabled]="!this.postForm.controls[formGroupNames[step - 1]].valid"
         [label]="'Next : ' + stepLabel[step]" icon="pi pi-check" styleClass="p-button-success right-button"
         (onClick)="setStepForward()"></p-button>
     </div>
   </p-footer>
 </ng-container>
-<ng-container *ngIf="step > 5">
-  <div class="container">
-    <div class="review-header flex justify-between">
-      <h2 class="text-2xl font-bold">Job details</h2>
-      <div class="flex-end">
-        <p-button label="Post this Job" icon="pi pi-send" styleClass="p-button p-button-success"
-          (click)="postTest()"></p-button>
+
+<ng-container *ngIf="step == 5">
+  <p-footer>
+  <div class="button-container">
+    <p-button *ngIf="step > 1" label="Back" icon="pi pi-arrow-left"
+      styleClass="p-button-outlined p-button-success left-button" (onClick)="setStepBack()"></p-button>
+    <p-button 
+        [label]="'Next : ' + stepLabel[step]" icon="pi pi-check" styleClass="p-button-success right-button"
+        (onClick)="postTest()"></p-button>
       </div>
-    </div>
-
-
-    <p-divider></p-divider>
-
-
-
-    <div class="flex justify-between">
-      <p-button label="Back" icon="pi pi-arrow-left" styleClass="p-button-outlined p-button-success"
-        (onClick)="setStepBack()"></p-button>
-      <p-button label="Post this Job" icon="pi pi-send" styleClass="p-button-success" (click)="postTest()"></p-button>
-    </div>
-  </div>
+  </p-footer>
 </ng-container>

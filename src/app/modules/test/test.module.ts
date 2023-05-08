@@ -29,11 +29,16 @@ import { AccordionModule } from 'primeng/accordion';
 import { PostTestComponent } from './test-admin/components/post-test/post-test.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { DropdownModule } from 'primeng/dropdown';
+import { DataViewModule, DataViewLayoutOptions  } from "primeng/dataview";
+import { ListTestComponent } from './test-admin/components/list-test/list-test.component';
+import { EditTestComponent } from './test-admin/components/edit-test/edit-test.component';
+import { DetailsTestComponent } from './test-admin/components/details-test/details-test.component';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
   declarations: [
-    TestComponent, PostTestComponent
+    TestComponent, PostTestComponent, ListTestComponent, EditTestComponent, DetailsTestComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +69,9 @@ import { DropdownModule } from 'primeng/dropdown';
     DynamicDialogModule,
     AccordionModule,
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    DataViewModule,
+    DialogModule
   ]
 })
 export class TestModule { }

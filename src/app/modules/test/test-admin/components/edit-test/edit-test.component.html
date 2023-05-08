@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="card col-md-6 offset-md-3 offset-md-3">
+        <div class="row">
+            <h3 class="text-center"> Update Test </h3>
+            <hr />
+            <div class="card-body">
+                <form *ngIf="postForm" [formGroup]="postForm" class="w-full" (ngSubmit)="onSubmit()">
+                    <input formControlName="name">
+                    <input formControlName="description">
+                    <input formControlName="stack">
+                    <input formControlName="level">
+
+                    <div formArrayName="questions">
+                      <div *ngFor="let question of questions().controls; let questIndex=index">
+                        <div [formGroupName]="questIndex">
+                          {{questIndex}}
+                          Text :
+                          <input type="text" formControlName="text">
+                          Correct option:
+                          <input type="text" formControlName="correct_option">
+                   
+                          <button (click)="removeQuestion(questIndex)">Remove</button>
+                          <div formArrayName="options">
+                            <div *ngFor="let option of questionOptions(questIndex).controls; let optionIndex=index">
+                              <div [formGroupName]="optionIndex">
+                                {{optionIndex}}
+                                Text :
+                                <input type="text" formControlName="text">
+                                <button (click)="removeQuestionOption(questIndex,optionIndex)">Remove</button>
+                                
+                   
+                              </div>
+                            </div>
+                          </div>
+                          <button type="button" (click)="addQuestionOption(questIndex)">Add option</button>
+                        </div>
+                      </div>
+                      <button type="button" (click)="addQuestion()">Add Question</button>
+                    </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>

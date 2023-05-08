@@ -1,0 +1,47 @@
+<div class="card">
+    <h1>List of Tests</h1>
+    <div class="container">
+        
+    <p-dataView #dv [value]="tests">
+        <ng-template let-test pTemplate="listItem">
+           
+                    <br>
+                    <h2>{{ test.name }}</h2>
+                    <br>
+                    <p>{{ test.description }}</p>
+                    <button (click)= "showDialog()" class="next"> Show</button>
+                    <p-dialog header="{{test.name}}" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                    
+                    <h3>-Description</h3>
+                    <p>{{ test.description }}</p>
+                    <p-divider></p-divider>
+                    <h3>-Stack</h3>
+                    <p>{{ test.stack }}</p>
+                    <p-divider></p-divider>
+                    <h3>-Level</h3>
+                    <p>{{ test.level }}</p>
+                    <p-divider></p-divider>
+                    <div *ngFor="let question of test.questions">
+                    <h3>-question:</h3>
+                    <p>{{ question.text }}</p>
+                    <p-divider></p-divider>
+                    <h3>*correct answer</h3>
+                    <p>{{ question.text }}</p>
+                    <p-divider></p-divider>
+                    <div *ngFor="let option of question.options">
+                        <h3>*option: </h3>
+                        <p>{{ option.text }}</p>
+                        <p-divider></p-divider>
+                    </div>
+                    </div>
+                    </p-dialog>
+                    <br>
+                    <button (click) = "updateTest(test.test_id)" class="next"> Update</button>
+                    <br>
+                    <button (click) = "deleteTest(test.test_id)" class="next"> Delete</button>
+                    <p-divider></p-divider>
+                
+        </ng-template>
+    </p-dataView>
+</div>
+</div>

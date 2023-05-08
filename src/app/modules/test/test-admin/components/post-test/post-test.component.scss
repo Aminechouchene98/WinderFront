@@ -7,6 +7,7 @@
     width: 990px;
     height: auto;
   }
+  
   h2 {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 37px;
@@ -71,6 +72,22 @@
     width: 100%;
     padding: 20px;
     background-color: #f1f1f1;
+  }
+  .button-aa {
+    background-color:#22c538;
+    color: #fff;
+    border:none;
+    border-radius:20px;
+    width: 45%;
+    padding: 10px 15px;
+  }
+  .button-ab {
+    background-color:#ff1818ab;
+    color: #fff;
+    border:0;
+    border-radius:30px;
+    width: 45%;
+    padding: 10px 15px;
   }
   
   .button-container {
@@ -154,4 +171,6 @@
     border: none;
     background: transparent !important;
   }
+
+  
   
