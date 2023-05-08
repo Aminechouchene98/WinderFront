@@ -5,8 +5,8 @@
     <div class="card flex justify-content-center">
       <div class="flex flex-column gap-2">
         <label htmlFor="type">Type</label>
-        <input pInputText name="type" id="type" aria-describedby="username-help" [(ngModel)]="reclamation.type" />
-        <small id="type-help">Enter your type of reclamation</small>
+        <input pInputText placeholder="Enter your type of reclamation" size="30" name="type" id="type" aria-describedby="username-help" [(ngModel)]="reclamation.type" />
+
       </div>
     </div>
   </div>
@@ -17,8 +17,7 @@
     <div class="card flex justify-content-center">
       <div class="flex flex-column gap-2">
         <label htmlFor="contenuRec">Contenu</label>
-        <input pInputText name="contenuRec" id="contenuRec" aria-describedby="username-help" [(ngModel)]="reclamation.contenuRec" />
-        <small id="username-help">Enter your content of reclamation</small>
+        <input pInputText placeholder="Enter your content of reclamation" size="30" name="contenuRec" id="contenuRec" aria-describedby="username-help" [(ngModel)]="reclamation.contenuRec" />
       </div>
     </div>
 
@@ -32,6 +31,6 @@
 
     <button type="button" class="btn btn-secondary" (click)="resetForm()">Réinitialiser</button>
     <br><br><br><br>
-    <a class="btn btn-secondary" routerLink="/reclamations">Liste des réclamations</a>
+    <a class="btn btn-secondary" routerLink="/project/reclamations">Liste des réclamations</a>
   </div>
 </form>

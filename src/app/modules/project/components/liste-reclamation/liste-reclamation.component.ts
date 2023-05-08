@@ -29,4 +29,12 @@ export class ListeReclamationComponent implements OnInit{
     );
   }
 
+  deleteReclamation(id: number): void {
+    this.reclamationService.deleteReclamation(id)
+      .subscribe(() => {
+        // Réclamation supprimée avec succès, effectuez les actions nécessaires (par exemple, actualisez la liste des réclamations)
+        this.getReclamationsByUser();
+      });
+  }
+
 }

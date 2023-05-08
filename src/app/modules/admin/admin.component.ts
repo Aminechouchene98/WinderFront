@@ -28,6 +28,11 @@ export class AdminComponent {
         icon: 'pi pi-fw pi-minus-circle',
         routerLink: '/admin/reclamation'
       },
+      {
+        label: 'Badword',
+        icon: 'pi pi-fw pi-minus-circle',
+        routerLink: '/admin/badword-rec'
+      },
 
       {
         label: 'Users',

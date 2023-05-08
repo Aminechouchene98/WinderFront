@@ -24,11 +24,13 @@ import {TagModule} from "primeng/tag";
 import {RatingModule} from "primeng/rating";
 import {FileUploadModule} from "primeng/fileupload";
 import { ReclamationDetailsComponent } from './reclamation-details/reclamation-details.component';
+import { BadwordRecComponent } from './badword-rec/badword-rec.component';
+import { AddBadwordRecComponent } from './add-badword-rec/add-badword-rec.component';
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, ReclamationDetailsComponent],
+  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, ReclamationDetailsComponent, BadwordRecComponent, AddBadwordRecComponent],
   imports: [
     FormsModule,
     CommonModule,

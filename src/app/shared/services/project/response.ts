@@ -1,7 +1,7 @@
 import {Reclamation} from "./reclamation";
 
 
-export interface ResponseData {
+export interface Response {
 
   idResponse: number;
   description: string;

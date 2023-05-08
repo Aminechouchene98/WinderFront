@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ResponseData} from "./ResponseData";
+import {Response} from "./response";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,17 @@ export class ResponseService {
 
   updateResponse(ResponseData: ResponseData, idResponse: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/modifierResponse/${idResponse}`, ResponseData);
+  }
+
+  getResponsesByReclamation(idReclamation: number): Observable<ResponseData[]> {
+    const url = `${this.baseUrl}/getResponsesByReclamation/${idReclamation}`;
+    return this.http.get<ResponseData[]>(url);
+  }
+
+  getResponsesByReclamationn(idReclamation: number): Observable<Response[]> {
+    console.log("ok")
+    const url = `${this.baseUrl}/getResponsesByReclamation/${idReclamation}`;
+    return this.http.get<Response[]>(url);
   }
 
 

@@ -14,6 +14,7 @@
         <th>Type</th>
         <th>Date d'envoi</th>
         <th>État</th>
+        <th>reponse</th>
         <th>Action</th>
       </tr>
     </ng-template>
@@ -23,6 +24,13 @@
         <td>{{ reclamation.type }}</td>
         <td>{{ reclamation.sendingDate }}</td>
         <td><p-tag [value]="reclamation.etat" ></p-tag></td>
+        <td><ul>
+          <li *ngFor="let response of reclamation.responses">
+            {{ response.description }}
+          </li>
+        </ul></td>
+
+
         <td>
           <p-button label="Supprimer" styleClass="p-button-danger" (click)="deleteReclamation(reclamation.idRec)"></p-button>
 

@@ -3,6 +3,9 @@ import * as FileSaver from 'file-saver';
 import { ReclamationService } from 'src/app/shared/services/project/reclamation.service';
 import {Reclamation} from "../../../shared/services/project/reclamation";
 import {Observable} from "rxjs";
+import {ResponseData} from "../../../shared/services/project/ResponseData";
+import {ResponseService} from "../../../shared/services/project/response.service";
+import {Response} from "../../../shared/services/project/response";
 
 @Component({
   selector: 'winder-reclamation',
@@ -11,17 +14,38 @@ import {Observable} from "rxjs";
 })
 export class ReclamationComponent implements OnInit{
 
+  reclamation!: Reclamation;
   reclamations: Reclamation[] = [];
+  responses: Response[] = [];
 
-  constructor(private reclamationService: ReclamationService) {}
+  constructor(private reclamationService: ReclamationService,private responseService: ResponseService) {}
 
   ngOnInit() {
     this.getReclamations();
+
+
   }
+
+
+
+  getReclamationResponsess(reclamationId: number): Response[] {
+    if (this.responses && this.reclamation) {
+      return this.responses.filter(response => response.reclamation.idRec === reclamationId);
+    }
+    return [];
+  }
+
 
   getReclamations(): void {
     this.reclamationService.listReclamations()
-      .subscribe(reclamations => this.reclamations = reclamations);
+      .subscribe(res=>{
+        this.reclamations = res
+
+        console.log(res)
+
+      })
+
+
   }
   deleteReclamation(id: number): void {
     this.reclamationService.deleteReclamation(id)

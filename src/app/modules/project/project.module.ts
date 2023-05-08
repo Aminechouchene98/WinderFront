@@ -32,6 +32,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReclamationUserComponent } from './components/reclamation-user/reclamation-user.component';
 import { ListeReclamationComponent } from './components/liste-reclamation/liste-reclamation.component';
+import {TableModule} from "primeng/table";
+import {TagModule} from "primeng/tag";
 
 const PRIME_MODULES = [
   MegaMenuModule,
@@ -58,6 +60,6 @@ const PRIME_MODULES = [
 
 @NgModule({
   declarations: [ProjectComponent, ProjectListComponent, ProjectElementComponent, ProjectDetailsBarComponent, PostProjectComponent, EditPostModalComponent, ReclamationUserComponent, ListeReclamationComponent],
-  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModule]
+  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModule, TableModule, TagModule]
 })
 export class ProjectModule {}

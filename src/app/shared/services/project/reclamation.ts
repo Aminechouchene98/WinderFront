@@ -12,5 +12,5 @@ export interface Reclamation {
   sendingDate: Date;
   etat: string;
   //user: User;
-  responses: ResponseData[];
+  responses: any[];
 }

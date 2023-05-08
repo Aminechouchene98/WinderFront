@@ -5,6 +5,8 @@ import {AuthguardGuard} from "./shared/authguard.guard";
 import {ProjectComponent} from "./modules/project/project.component";
 import {ProjectListComponent} from "./modules/project/components/project-list/project-list.component";
 import {ReclamationDetailsComponent} from "./modules/admin/reclamation-details/reclamation-details.component";
+import {AddBadwordRecComponent} from "./modules/admin/add-badword-rec/add-badword-rec.component";
+import {ListeReclamationComponent} from "./modules/project/components/liste-reclamation/liste-reclamation.component";
 
 const routes: Routes = [
   {
@@ -13,6 +15,11 @@ const routes: Routes = [
   },
   { path: 'reclamations/:id',
     component: ReclamationDetailsComponent },
+  { path: 'admin/add-badword-rec',
+    component: AddBadwordRecComponent
+  },
+  { path: 'reclamations',
+    component: ListeReclamationComponent },
 
 
   {
