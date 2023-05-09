@@ -17,16 +17,28 @@ export class ReclamationComponent implements OnInit{
   reclamation!: Reclamation;
   reclamations: Reclamation[] = [];
   responses: Response[] = [];
+  aujourdhuiReclamations: number = 0;
 
   constructor(private reclamationService: ReclamationService,private responseService: ResponseService) {}
 
   ngOnInit() {
     this.getReclamations();
+    this.getNombresReclamationAujourdhui();
 
 
   }
 
-
+  getNombresReclamationAujourdhui() {
+    this.reclamationService.nombresReclamationAujourdhui()
+      .subscribe(
+        nombre => {
+          this.aujourdhuiReclamations = nombre;
+        },
+        error => {
+          // Gérer l'erreur de récupération du nombre de réclamations
+        }
+      );
+  }
 
   getReclamationResponsess(reclamationId: number): Response[] {
     if (this.responses && this.reclamation) {
