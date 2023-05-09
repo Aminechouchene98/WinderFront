@@ -84,6 +84,7 @@ export class EditTestComponent implements OnInit{
       level: [this.test.level, Validators.required],
       questions: this.fb.array([])
     });
+    this.populateQuestions();
     console.log(this.test)
   }
 
@@ -126,6 +127,35 @@ export class EditTestComponent implements OnInit{
 
   removeQuestionOption(questIndex:number,optionIndex:number) {
     this.questionOptions(questIndex).removeAt(optionIndex);
+  }
+  
+
+  populateQuestions() {
+    const questions = this.test.questions || [];
+
+  const questionFormArray = this.postForm.get('questions') as FormArray;
+
+  questions.forEach((question) => {
+    const questionGroup = this.fb.group({
+      text: '',
+      correct_option: '',
+      options: this.fb.array([])
+    });
+
+    const optionsFormArray = questionGroup.get('options') as FormArray;
+    const options = question.options || [];
+
+    options.forEach((option) => {
+      const optionGroup = this.fb.group({
+        text: ''
+      });
+
+      optionsFormArray.push(optionGroup);
+    });
+
+    questionGroup.patchValue(question);
+    questionFormArray.push(questionGroup);
+  });
   }
   
 

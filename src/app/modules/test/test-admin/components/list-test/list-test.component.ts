@@ -68,6 +68,10 @@ updateTest(test_id: number){
   this.router.navigate(['/tests/update-test', test_id]);
 }
 
+addTest(){
+  this.router.navigate(['/tests/add-test']);
+}
+
 deleteTest(test_id: number){
   this.testService.deleteTest(test_id).subscribe( data => {
     console.log(data);
