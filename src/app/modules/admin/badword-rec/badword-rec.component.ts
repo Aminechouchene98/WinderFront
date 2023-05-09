@@ -1,21 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {DictionnaireBadWords} from "../../../shared/services/project/DictionnaireBadWords";
 import {DictionnaireBadWordsService} from "../../../shared/services/project/dictionnaire-bad-words.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'winder-badword-rec',
   templateUrl: './badword-rec.component.html',
-  styleUrls: ['./badword-rec.component.scss']
+  styleUrls: ['./badword-rec.component.scss'],
+  providers: [MessageService]
+
 })
 export class BadwordRecComponent implements OnInit{
 
   badWords: DictionnaireBadWords[] = [];
 
-  constructor(private badWordService: DictionnaireBadWordsService) {}
+  constructor(private badWordService: DictionnaireBadWordsService,private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.getBadWords();
   }
+
+
+
 
   getBadWords(): void {
     this.badWordService.getBadWords().subscribe(
@@ -33,6 +39,8 @@ export class BadwordRecComponent implements OnInit{
       () => {
         // Actualiser la liste des mots interdits après la suppression
         this.getBadWords();
+        this.messageService.add({ severity: 'error', summary: 'Supprission Avec Succeé', detail: 'Mot interdit supprimé avec succès' });
+
         console.log('Mot interdit supprimé avec succès !');
       },
       (error) => {

@@ -7,11 +7,13 @@ import { ResponseService } from 'src/app/shared/services/project/response.servic
 import {ResponseData} from "../../../shared/services/project/ResponseData";
 import {Response} from "../../../shared/services/project/response";
 import * as jsPDF from 'jspdf';
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'winder-reclamation-details',
   templateUrl: './reclamation-details.component.html',
-  styleUrls: ['./reclamation-details.component.scss']
+  styleUrls: ['./reclamation-details.component.scss'],
+  providers: [MessageService],
 })
 export class ReclamationDetailsComponent implements OnInit {
 
@@ -25,7 +27,7 @@ export class ReclamationDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private reclamationService: ReclamationService,
-    private responseService: ResponseService, private router:Router
+    private responseService: ResponseService, private router:Router,private messageService: MessageService
 
 
 ) { }
@@ -113,7 +115,9 @@ export class ReclamationDetailsComponent implements OnInit {
       // Appelez la méthode addResponse du service ResponseService
       this.responseService.addResponse(this.response, this.reclamation.idRec).subscribe(
         () => {
-          this.router.navigate(['reclamation']);
+          this.router.navigate(['/admin/reclamation']);
+          this.messageService.add({ severity: 'success', summary: 'Supprission Avec Succeé', detail: 'Reclamation supprimé avec succès' });
+
           // La réponse a été ajoutée avec succès, effectuez les actions nécessaires (redirection, mise à jour de la vue, etc.)
         },
         (error) => {

@@ -29,6 +29,7 @@ import { AddBadwordRecComponent } from './add-badword-rec/add-badword-rec.compon
 import {DividerModule} from "primeng/divider";
 import {InputTextareaModule} from "primeng/inputtextarea";
 
+
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
 @NgModule({

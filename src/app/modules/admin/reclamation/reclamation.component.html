@@ -19,6 +19,7 @@
         <th>État</th>
         <th>reponse</th>
         <th>Action</th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-reclamation>
@@ -32,16 +33,10 @@
             {{ response.description }}
           </li>
         </ul></td>
-
-
         <td>
-          <p-button label="Supprimer" styleClass="p-button-danger" (click)="deleteReclamation(reclamation.idRec)"></p-button>
-
-
+          <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" (click)="deleteReclamation(reclamation.idRec)"></p-button>
         </td>
         <td>
-          <!-- Lien vers la page de détail de la réclamation -->
-
           <p-button label="Voir détails" styleClass="p-button-info"[routerLink]="['/reclamations', reclamation.idRec]"></p-button>
         </td>
       </tr>
@@ -53,3 +48,4 @@
     </ng-template>
   </p-table>
 </div>
+<p-toast></p-toast>

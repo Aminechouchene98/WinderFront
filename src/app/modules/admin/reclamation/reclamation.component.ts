@@ -2,15 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import * as FileSaver from 'file-saver';
 import { ReclamationService } from 'src/app/shared/services/project/reclamation.service';
 import {Reclamation} from "../../../shared/services/project/reclamation";
-import {Observable} from "rxjs";
-import {ResponseData} from "../../../shared/services/project/ResponseData";
 import {ResponseService} from "../../../shared/services/project/response.service";
 import {Response} from "../../../shared/services/project/response";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'winder-reclamation',
   templateUrl: './reclamation.component.html',
-  styleUrls: ['./reclamation.component.scss']
+  styleUrls: ['./reclamation.component.scss'],
+  providers: [MessageService],
 })
 export class ReclamationComponent implements OnInit{
 
@@ -19,7 +19,7 @@ export class ReclamationComponent implements OnInit{
   responses: Response[] = [];
   aujourdhuiReclamations: number = 0;
 
-  constructor(private reclamationService: ReclamationService,private responseService: ResponseService) {}
+  constructor(private reclamationService: ReclamationService,private responseService: ResponseService,private messageService: MessageService) {}
 
   ngOnInit() {
     this.getReclamations();
@@ -62,6 +62,8 @@ export class ReclamationComponent implements OnInit{
   deleteReclamation(id: number): void {
     this.reclamationService.deleteReclamation(id)
       .subscribe(() => {
+        this.getNombresReclamationAujourdhui();
+        this.messageService.add({ severity: 'error', summary: 'Supprission Avec Succeé', detail: 'Reclamation supprimé avec succès' });
         // Réclamation supprimée avec succès, effectuez les actions nécessaires (par exemple, actualisez la liste des réclamations)
         this.getReclamations();
       });

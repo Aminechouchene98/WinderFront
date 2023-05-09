@@ -4,6 +4,7 @@ import { ProjectComponent } from './project.component';
 import { PostProjectComponent } from './components/post-project/post-project.component';
 import { ReclamationUserComponent } from './components/reclamation-user/reclamation-user.component';
 import { ListeReclamationComponent } from './components/liste-reclamation/liste-reclamation.component'
+import {DetailsReclamationFComponent} from "./components/details-reclamation-f/details-reclamation-f.component";
 
 const routes: Routes = [
   {
@@ -19,7 +20,9 @@ const routes: Routes = [
     component: ReclamationUserComponent
   },
   { path: 'reclamations',
-    component: ListeReclamationComponent }
+    component: ListeReclamationComponent },
+  { path: 'reclamationDetails/:id',
+    component: DetailsReclamationFComponent }
 ];
 
 @NgModule({

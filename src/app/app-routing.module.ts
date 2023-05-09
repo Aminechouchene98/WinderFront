@@ -7,6 +7,9 @@ import {ProjectListComponent} from "./modules/project/components/project-list/pr
 import {ReclamationDetailsComponent} from "./modules/admin/reclamation-details/reclamation-details.component";
 import {AddBadwordRecComponent} from "./modules/admin/add-badword-rec/add-badword-rec.component";
 import {ListeReclamationComponent} from "./modules/project/components/liste-reclamation/liste-reclamation.component";
+import {
+  DetailsReclamationFComponent
+} from "./modules/project/components/details-reclamation-f/details-reclamation-f.component";
 
 const routes: Routes = [
   {
@@ -20,6 +23,8 @@ const routes: Routes = [
   },
   { path: 'reclamations',
     component: ListeReclamationComponent },
+  { path: 'reclamationDetails/:id',
+    component: DetailsReclamationFComponent },
 
 
   {

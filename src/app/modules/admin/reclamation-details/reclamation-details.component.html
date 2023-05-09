@@ -1,53 +1,7 @@
-<!--<div class="reclamation-details" *ngIf="reclamation">-->
-<!--  <h2>Type de reclamation: {{ reclamation.type }}</h2>-->
-<!--  <p>Contenu: {{ reclamation.contenuRec }}</p>-->
-<!--  <p>Date d'envoi: {{ reclamation.sendingDate | date }}</p>-->
-<!--  &lt;!&ndash; Affichez les autres propriétés de la réclamation selon vos besoins &ndash;&gt;-->
-<!--</div>-->
-
-<!--<div class="loading" *ngIf="!reclamation">-->
-<!--  <p>Chargement des détails de la réclamation...</p>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; Afficher les réponses &ndash;&gt;-->
-<!--<div *ngIf="reclamation.responses.length > 0">-->
-<!--  <br><br>-->
-<!--  <h2 class="center">Réponses: </h2>-->
-
-<!--    <li *ngFor="let response of reclamation.responses">-->
-<!--      {{ response.description }}-->
-<!--    </li>-->
-
-<!--</div>-->
-
-<!--<div *ngIf="reclamation.responses.length === 0" >-->
-<!--  <p center>Aucune réponse disponible.</p>-->
-<!--  <div class="response-form" *ngIf="reclamation">-->
-<!--    <h2>Réponse de l'admin</h2>-->
-<!--    <form (ngSubmit)="submitResponse()" #responseForm="ngForm">-->
-<!--      <textarea name="description" [(ngModel)]="response.description" required></textarea>-->
-<!--      <br>-->
-
-<!--      <button type="submit" [disabled]="responseForm.invalid" class="btn-green">Envoyer la réponse</button>-->
-<!--    </form>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Simple registration form</title>
+  <title></title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <style>
@@ -56,7 +10,7 @@
 </head>
 <body>
 <div class="main-block">
-  <h1>Complaint Detail</h1>
+  <h1><b>Complaint Detail</b></h1>
   <form>
   <hr>
   <h2><b>Type: </b> {{ reclamation.type }}</h2>
@@ -79,7 +33,7 @@
         </form>
       </div>
     </div>
-
+<p-toast></p-toast>
 
 
 
