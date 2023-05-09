@@ -25,9 +25,23 @@ import { SharedModule } from './shared/shared.module';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { ProfileDetailsComponent } from './modules/profile-details/profile-details.component';
 import { DialogModule } from 'primeng/dialog';
+import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
+import { FinishScreenComponent } from './modules/test/finish-screen/finish-screen.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent, ProfileComponent, ProfileDetailsComponent, QuestionAdminComponent, FinishScreenComponent, FinishScreenFailComponent, RedirectToTestComponent],
+  declarations: [
+    AppComponent,
+    LandingPageComponent,
+    OnScrollDirective,
+    ResetPasswordComponent,
+    ResetComponent,
+    ProfileComponent,
+    ProfileDetailsComponent,
+    QuestionAdminComponent,
+    FinishScreenComponent,
+    FinishScreenFailComponent,
+    RedirectToTestComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
