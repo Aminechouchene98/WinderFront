@@ -49,14 +49,16 @@ export class AdminComponent {
           {
             label: 'Search',
             icon: 'pi pi-fw pi-users',
+            routerLink: '/admin/users-list',
             items: [
               {
                 label: 'Filter',
                 icon: 'pi pi-fw pi-filter',
                 items: [
                   {
-                    label: 'Print',
-                    icon: 'pi pi-fw pi-print'
+                    label: 'Users Chart',
+                    icon: 'pi pi-fw pi-chart-line',
+                    routerLink:'/admin/users-pie'
                   }
                 ]
               },
@@ -78,7 +80,8 @@ export class AdminComponent {
       },
       {
         label: 'Logout',
-        icon: 'pi pi-fw pi-power-off'
+        icon: 'pi pi-fw pi-power-off',
+        routerLink: '/auth/login',
       }
     ];
   }

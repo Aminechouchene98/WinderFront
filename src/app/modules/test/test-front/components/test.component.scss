@@ -29,9 +29,10 @@
     background-color: var(--color-light);
     padding: 50px;
   }
+ 
   
   .main {
-    background: #fff;
+    // background: #e1e1e2;
     box-shadow: 0 15px 10px var(--default-shadow);
     height: calc(100vh - 100px);
     border-radius: 30px;
@@ -241,6 +242,7 @@
     }
   }
   .smth {
+    
     grid-row: -3 / 2;
     grid-column: center-start / center-end;
     display: flex;
@@ -251,3 +253,9 @@
   :host::ng-deep .mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic{
     stroke: #16a34a !important;
   }
+
+  .button-disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

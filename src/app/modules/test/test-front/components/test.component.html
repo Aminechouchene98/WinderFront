@@ -1,6 +1,8 @@
-
+<br>
 <div class="main" #main>
+  
     <span class="smth">
+      
       <mat-progress-spinner class="smth" mode="determinate"  [value]="(timer / (this.questions.length * 1 * 60)) * 100 " ></mat-progress-spinner>
       {{getFormattedTime()}}
       </span>
@@ -8,7 +10,7 @@
     <div class="questionnaire">
       <div class="question" #questionContainer>
         <h2 class="question__heading">Question {{ currentQuestionIndex + 1 }}</h2>
-        <div class="question__q">{{ question.text }}</div>
+        <div class="question__q" #questionC>{{ question.text }}</div>
         <form [formGroup]="answerForm">
         <div class="question__answers" #answer>
           <div
@@ -18,12 +20,12 @@
             (click)="onSelect(answerr)"
           >
             <p>{{ option?.text }}</p>
+            
           </div>
         </div>
         </form>
       </div>
-      {{ selectedAnswer }}
-      {{score}}
+      <!-- {{score}}/{{ MaxScore }} -->
       <div class="actions" #actions>
         
       <!--  <button class="previous" (click)="prev()">
@@ -33,6 +35,7 @@
         </button> -->
        
         <button *ngIf="!isLastQuestion" class="next" (click)="goToNextQuestion()">Next</button>
+        <button class="next" (click)="updateQuestion()" [disabled]="isButtonDisabled">{{ isButtonDisabled ? 'Not available' : 'Update' }}</button>
         <button *ngIf="isLastQuestion" class="next" (click)="finishQuizSuccess()">Finish</button>
       </div>
       

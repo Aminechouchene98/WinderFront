@@ -1,35 +1,65 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ProfileComponent } from './modules/profile/profile.component';
+import { UserService } from './shared/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [DialogService]
 })
 export class AppComponent {
   title = 'WINDER_FRONT';
   items!: any[];
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private dialogService: DialogService, private userservice: UserService) {}
 
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Ma',
-        icon: 'pi pi-fw pi-telegram'
+        label: 'My projects',
+        icon: 'pi pi-fw pi-telegram',
+        routerLink: '/project/user-projects'
       },
       {
-        label: '3inich',
-        icon: 'pi pi-fw pi-users'
+        label: 'Projects List',
+        icon: 'pi pi-fw pi-list',
+        routerLink: '/project'
       },
       {
-        label: 'bech',
-        icon: 'pi pi-fw pi-calendar'
+        label: 'Add Project',
+        icon: 'pi pi-fw pi-plus',
+        routerLink: '/project/post-project'
+      },
+
+      {
+        label: 'Profile',
+        icon: 'pi pi-fw pi-user',
+        command: () => (this.visible = true)
       },
       {
-        label: 'nkhdem',
-        icon: 'pi pi-fw pi-cog'
+        label: 'Logout',
+        icon: 'pi pi-fw pi-power-off',
+        command: () => this.userservice.logoutUser()
       }
     ];
+  }
+
+  name = localStorage.getItem('nom');
+  prenom = localStorage.getItem('prenom');
+  email = localStorage.getItem('email');
+  visible!: boolean;
+
+  showDialog() {
+    this.visible = true;
+  }
+  showProfileDialog() {
+    const ref = this.dialogService.open(ProfileComponent, {
+      header: 'My Profile',
+      width: '300px',
+      closable: true
+    });
   }
 }

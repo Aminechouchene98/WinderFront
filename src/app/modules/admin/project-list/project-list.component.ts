@@ -20,10 +20,14 @@ export class ProjectListComponent {
 
   ngOnInit() {
     this.loadProjects();
+    console.log(this.projects);
   }
 
   loadProjects() {
     this.projects = this.projectService.getAllProjects();
+    this.projectService.getAllProjects().subscribe((data) => {
+      console.log(data);
+    });
   }
   delete(id: number) {
     this.projectService.deleteProject(id).subscribe(() => {

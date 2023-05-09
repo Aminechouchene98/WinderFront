@@ -35,7 +35,9 @@ import { ListeReclamationComponent } from './components/liste-reclamation/liste-
 import {TableModule} from "primeng/table";
 import {TagModule} from "primeng/tag";
 import { DetailsReclamationFComponent } from './components/details-reclamation-f/details-reclamation-f.component';
-import {DialogModule} from "primeng/dialog";
+
+import { UserProjectsComponent } from './components/user-projects/user-projects.component';
+import { DialogModule } from 'primeng/dialog';
 
 const PRIME_MODULES = [
   MegaMenuModule,
@@ -57,11 +59,23 @@ const PRIME_MODULES = [
   AngularEditorModule,
   DynamicDialogModule,
   AccordionModule,
-  TooltipModule
+  TooltipModule,
+  TableModule,
+  DialogModule
 ];
 
 @NgModule({
-  declarations: [ProjectComponent, ProjectListComponent, ProjectElementComponent, ProjectDetailsBarComponent, PostProjectComponent, EditPostModalComponent, ReclamationUserComponent, ListeReclamationComponent, DetailsReclamationFComponent],
-  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModule, TableModule, TagModule, DialogModule]
+
+  declarations: [
+    ProjectComponent,
+    ProjectListComponent,
+    ProjectElementComponent,
+    ProjectDetailsBarComponent,
+    PostProjectComponent,
+    EditPostModalComponent,
+    ReclamationUserComponent,
+    UserProjectsComponent, ListeReclamationComponent, DetailsReclamationFComponent
+  ],
+  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModul, TableModule, TagModule, DialogModulee]
 })
 export class ProjectModule {}

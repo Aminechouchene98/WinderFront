@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/modules/question/question';
 import { Option } from 'src/app/modules/option/option';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { gsap } from 'gsap';
-import { TestService } from '../test.service';
+import { TestService } from '../../test.service';
+import { Test } from '../../test';
 
 
 @Component({
@@ -14,13 +15,14 @@ import { TestService } from '../test.service';
 })
 export class TestComponent implements OnInit {
   @ViewChild('slider', { static: true }) slider!: ElementRef<HTMLDivElement>;
-  @ViewChild('questionContainer', { static: true })
-  questionContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('questionContainer') questionContainer!: ElementRef;
+  @ViewChild('questionC') questionC!: ElementRef;
   @ViewChild('answer', { static: true }) answer!: ElementRef<HTMLDivElement>;
   @ViewChild('main', { static: true }) main!: ElementRef<HTMLDivElement>;
   @ViewChild('actions', { static: true }) actions!: ElementRef<HTMLDivElement>;
   @ViewChild('progress', { static: true }) progress!: ElementRef<HTMLDivElement>;
-  
+  @Output() questionViewd = new EventEmitter<string>();
+
   questions: Question[] = [];
   options!: Option[];
   score: number =0;
@@ -37,7 +39,9 @@ export class TestComponent implements OnInit {
   isLastQuestion!: boolean;
   timer:any;
   @Input() test_id!: number;
+  question_id!: number;
   MaxScore!: number;
+  test!: Test;
 
   positionOptions = [
       {
@@ -57,6 +61,8 @@ export class TestComponent implements OnInit {
           value: 'right'
       }
   ];
+  requiredScore!: number;
+  isButtonDisabled: boolean = false;
   
   
   constructor(private route: ActivatedRoute, 
@@ -168,10 +174,10 @@ export class TestComponent implements OnInit {
           });
         },
       });
-    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score == this.MaxScore ) {
+    }else if (this.currentQuestionIndex === this.questions.length -1 && (this.score == this.MaxScore || this.score >= this.requiredScore) ) {
       this.isLastQuestion = true;
       this.finishQuizSuccess();
-    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score != this.MaxScore ) {
+    }else if (this.currentQuestionIndex === this.questions.length -1 && this.score < this.requiredScore ) {
       this.isLastQuestion = true;
       this.finishQuizFail();
     }
@@ -210,15 +216,38 @@ export class TestComponent implements OnInit {
     }
   }
 */
+  i: number =0;
+
+   updateQuestion() {
+    this.i++;
+    if (this.i <= 2){
+
+      const selectedQuestion = this.questionC.nativeElement.innerHTML;
+   this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
+    const matchingQuestion = response.find((question) => question.text === selectedQuestion);
+    if (matchingQuestion) {
+      const question_id = matchingQuestion.question_id;
+      console.log(question_id);
+      this.testService.updateQuestionInTest(this.test_id, question_id).subscribe((response: Question[]) => {
+        this.questions= response;
+        console.log(this.questions);
+      });
+    }
+  });
+    } else{
+      this.isButtonDisabled = true;
+    }
+    
+}
 
   public getQuestionsOfTest(): void {
     this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
       this.questions = response;
       this.timer = this.questions.length * 1 * 60;
-      this.MaxScore = this.questions.length;
+      this.MaxScore = this.questions.length * 100;
+      this.requiredScore = (70 / 100) * this.MaxScore;
       console.log(this.questions);
       this.startTimer();});
-   
    
   }
 
@@ -249,7 +278,7 @@ export class TestComponent implements OnInit {
   calculateScore() {
     for (let question of this.questions) {
       if (question.correct_option === this.selectedAnswer) {
-        this.score++ ;
+        this.score = this.score + 100 ;
       }
     }
   }

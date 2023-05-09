@@ -8,6 +8,8 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import {ReclamationDetailsComponent} from "./reclamation-details/reclamation-details.component";
 import {BadwordRecComponent} from "./badword-rec/badword-rec.component";
 import {AddBadwordRecComponent} from "./add-badword-rec/add-badword-rec.component";
+import { UsersListComponent } from './users-list/users-list.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,14 @@ const routes: Routes = [
       {
         path: 'projects-list',
         component: ProjectListComponent
+      },
+      {
+        path: 'users-list',
+        component: UsersListComponent
+      },
+      {
+        path: 'users-pie',
+        component: PieChartComponent
       },
       {
         path: 'reclamation',

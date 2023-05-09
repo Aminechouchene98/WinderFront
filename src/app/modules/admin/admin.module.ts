@@ -29,11 +29,14 @@ import { AddBadwordRecComponent } from './add-badword-rec/add-badword-rec.compon
 import {DividerModule} from "primeng/divider";
 import {InputTextareaModule} from "primeng/inputtextarea";
 
+import { UsersListComponent } from './users-list/users-list.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, ReclamationDetailsComponent, BadwordRecComponent, AddBadwordRecComponent],
+
+  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, UsersListComponent, PieChartComponent, ReclamationDetailsComponent, BadwordRecComponent, AddBadwordRecComponent],
   imports: [
     FormsModule,
     CommonModule,
