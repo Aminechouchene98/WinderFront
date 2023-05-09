@@ -40,13 +40,14 @@ import { DialogModule } from 'primeng/dialog';
   declarations: [
     TestComponent, PostTestComponent, ListTestComponent, EditTestComponent, DetailsTestComponent
   ],
+
   imports: [
     CommonModule,
     TestRoutingModule,
     HttpClientModule,
     DockModule,
     MultiSelectModule,
-    ChipModule, 
+    ChipModule,
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
@@ -74,4 +75,4 @@ import { DialogModule } from 'primeng/dialog';
     DialogModule
   ]
 })
-export class TestModule { }
+export class TestModule {}

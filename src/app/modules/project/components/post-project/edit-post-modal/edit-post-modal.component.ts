@@ -16,6 +16,8 @@ export class EditPostModalComponent {
   postForm!: FormGroup;
 
   constructor(private config: DynamicDialogConfig, private fb: FormBuilder, public ref: DynamicDialogRef, private ss: SkillService) {
+    this.skillList = this.ss.getAllSkills();
+
     this.field = this.config.data.param;
     this.data = this.config.data.data;
   }
@@ -63,7 +65,6 @@ export class EditPostModalComponent {
 
   ngOnInit(): void {
     console.log(this.data);
-    this.skillList = this.ss.getAllSkills();
 
     this.initPostForm();
   }
@@ -72,17 +73,19 @@ export class EditPostModalComponent {
     this.ref.close(this.postForm.get(this.field)?.value);
   }
   initPostForm() {
-    this.postForm = this.fb.group({
-      title: [this.data, Validators.required],
-      skills: [this.data, Validators.required],
-      scope: [this.data, Validators.required],
-      budgetFrom: [this.data, Validators.required],
-      budgetTo: [this.data, Validators.required],
-      description: [this.data, Validators.required],
-      duration: [this.data, Validators.required],
-      experience: [this.data, Validators.required],
-      file: [null]
-    });
+    if (this.data != null) {
+      this.postForm = this.fb.group({
+        title: [this.data, Validators.required],
+        skills: [this.data, Validators.required],
+        scope: [this.data, Validators.required],
+        budgetFrom: [this.data, Validators.required],
+        budgetTo: [this.data, Validators.required],
+        description: [this.data, Validators.required],
+        duration: [this.data, Validators.required],
+        experience: [this.data, Validators.required],
+        file: [null]
+      });
+    }
   }
   editRadio(fromGroupName: string) {
     this.postForm.controls[fromGroupName].setValue('');
