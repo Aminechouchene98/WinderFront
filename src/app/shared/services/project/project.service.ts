@@ -11,8 +11,8 @@ export class ProjectService {
 
   constructor(private http: HttpClient) {}
 
-  postProject(body: any) {
-    return this.http.post(this.baseUrl + 'addProject', body);
+  postProject(body: any, email: any) {
+    return this.http.post(this.baseUrl + 'addProject/' + email, body);
   }
   getAllProjects(): Observable<any> {
     return this.http.get(this.baseUrl + 'allProjects');
@@ -23,5 +23,9 @@ export class ProjectService {
 
   countProjects(): Observable<any> {
     return this.http.get(this.baseUrl + 'countProjects');
+  }
+
+  getProjectById(email: any): Observable<any> {
+    return this.http.get(this.baseUrl + 'projectByUserEmail/' + email);
   }
 }
