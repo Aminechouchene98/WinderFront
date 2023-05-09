@@ -14,6 +14,9 @@ import { QuestionAdminComponent } from './modules/question/question-admin/compon
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { PostTestComponent } from './modules/test/test-admin/components/post-test/post-test.component';
+import { RedirectToTestComponent } from './modules/test/redirect-to-test/redirect-to-test.component';
+
 import { ResetPasswordComponent } from './modules/reset-password/reset-password/reset-password.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +27,7 @@ import { ProfileDetailsComponent } from './modules/profile-details/profile-detai
 import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent, ProfileComponent, ProfileDetailsComponent],
+  declarations: [AppComponent, LandingPageComponent, OnScrollDirective, ResetPasswordComponent, ResetComponent, ProfileComponent, ProfileDetailsComponent, QuestionAdminComponent, FinishScreenComponent, FinishScreenFailComponent, RedirectToTestComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

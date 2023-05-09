@@ -1,0 +1,24 @@
+<div class="card">
+    <h1>List of Tests</h1>
+    <div class="container">
+        
+    <p-dataView #dv [value]="tests">
+        <ng-template let-test pTemplate="listItem">
+           
+                    <br>
+                    <h2>{{ test.name }}</h2>
+                    <br>
+                    <p>{{ test.description }}</p>
+                    <button (click)= "show(test)" class="next"> Show</button>
+              
+                    
+                    <br>
+                    <button (click) = "updateTest(test.test_id)" class="next"> Update</button>
+                    <br>
+                    <button (click) = "deleteTest(test.test_id)" class="next"> Delete</button>
+                    <p-divider></p-divider>
+                
+        </ng-template>
+    </p-dataView>
+</div>
+</div>
