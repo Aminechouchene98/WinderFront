@@ -3,34 +3,34 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Test } from './test';
 import { Question } from '../question/question';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
+  private apiServerUrl = environment.baseUrl;
 
-  private apiServerUrl = "http://localhost:8089/pidev";
-
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
   public getTests(): Observable<Test[]> {
-    return this.http.get<Test[]>(`${this.apiServerUrl}/tests/retrieve-all-tests`);
+    return this.http.get<Test[]>(`${this.apiServerUrl}tests/retrieve-all-tests`);
   }
 
   public createTestWithQuestionsAndOptions(test: Test): Observable<Test> {
-    return this.http.post<Test>(`${this.apiServerUrl}/tests/create-test`, test);
+    return this.http.post<Test>(`${this.apiServerUrl}tests/create-test`, test);
   }
 
-  public updateTest(test_id: number,test: Test): Observable<Test> {
-    return this.http.put<Test>(`${this.apiServerUrl}/tests/update-test/${test_id}`, test);
+  public updateTest(test_id: number, test: Test): Observable<Test> {
+    return this.http.put<Test>(`${this.apiServerUrl}tests/update-test/${test_id}`, test);
   }
 
   public deleteTest(test_id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/tests/remove-test/${test_id}`);
+    return this.http.delete<void>(`${this.apiServerUrl}tests/remove-test/${test_id}`);
   }
 
   public retrieveTest(test_id: number): Observable<Test> {
-    return this.http.get<Test>(`${this.apiServerUrl}/tests/retrieve-test/${test_id}`);
+    return this.http.get<Test>(`${this.apiServerUrl}tests/retrieve-test/${test_id}`);
   }
 
   // public getTestQuestions1(): Observable<Question[]> {
@@ -38,11 +38,10 @@ export class TestService {
   // }
 
   public getTestQuestions(test_id: number): Observable<Question[]> {
-    return this.http.get<Question[]>(`${this.apiServerUrl}/tests/${test_id}/questions`);
+    return this.http.get<Question[]>(`${this.apiServerUrl}tests/${test_id}/questions`);
   }
 
-  public updateQuestionInTest(test_id: number, question_id: number): Observable<Question[]>{
-    return this.http.put<Question[]>(`${this.apiServerUrl}/tests/update-test/${test_id}/questions/${question_id}`, null);
+  public updateQuestionInTest(test_id: number, question_id: number): Observable<Question[]> {
+    return this.http.put<Question[]>(`${this.apiServerUrl}tests/update-test/${test_id}/questions/${question_id}`, null);
   }
-  
 }

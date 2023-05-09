@@ -6,22 +6,23 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EncryptionService } from './encryption.service';
 import { User } from '../modules/auth/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   public data: any;
-  private apiUrl = 'http://localhost:8090'; // replace with your API endpoint
+  private apiUrl = environment.baseUrl; // replace with your API endpoint
   constructor(private encryptionService: EncryptionService, private http: HttpClient, private router: Router) {}
 
   login(userName: string, password: string) {
     const body = { userName, password };
-    return this.http.post(`${this.apiUrl}/authenticate`, body);
+    return this.http.post(`${this.apiUrl}authenticate`, body);
   }
 
   signUp(body: FormBuilder): Observable<any> {
-    return this.http.post(`${this.apiUrl}/registerNewUser`, body);
+    return this.http.post(`${this.apiUrl}registerNewUser`, body);
   }
 
   getToken() {
@@ -50,14 +51,14 @@ export class UserService {
   }
 
   forget(body: any) {
-    return this.http.post(this.apiUrl + '/reset', body, {
+    return this.http.post(this.apiUrl + 'reset', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
 
   reset(body: any) {
-    return this.http.post(this.apiUrl + '/reset_password', body, {
+    return this.http.post(this.apiUrl + 'reset_password', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -66,7 +67,7 @@ export class UserService {
   otp(body: any) {
     console.log(body);
 
-    return this.http.post(this.apiUrl + '/otp', body, {
+    return this.http.post(this.apiUrl + 'otp', body, {
       observe: 'response',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -82,17 +83,17 @@ export class UserService {
   }*/
 
   update(user: any, username: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/updateUser/${username}`, user, {
+    return this.http.put(`${this.apiUrl}updateUser/${username}`, user, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
 
   public getusernames() {
-    return this.http.get(this.apiUrl + '/usernames');
+    return this.http.get(this.apiUrl + 'usernames');
   }
 
   public getuser(username: any) {
-    return this.http.get(this.apiUrl + '/getUser/' + username);
+    return this.http.get(this.apiUrl + 'getUser/' + username);
   }
 
   /*
@@ -101,12 +102,12 @@ export class UserService {
   }*/
 
   getroles() {
-    return this.http.get(this.apiUrl + '/getallroles');
+    return this.http.get(this.apiUrl + 'getallroles');
   }
 
   // affichage All users
   getusers() {
-    return this.http.get(this.apiUrl + '/users');
+    return this.http.get(this.apiUrl + 'users');
   }
 
   deleteUser(userName: string) {
@@ -115,11 +116,11 @@ export class UserService {
   }
 
   updateUser(user: User, userName: string): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/updateUser/${userName}`, user);
+    return this.http.put<User>(`${this.apiUrl}updateUser/${userName}`, user);
   }
 
   // I will use it in pie chart
   countUsersByRole(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/count-by-role`);
+    return this.http.get(`${this.apiUrl}count-by-role`);
   }
 }

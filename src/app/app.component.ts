@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { UserService } from './shared/user.service';
@@ -19,21 +19,21 @@ export class AppComponent {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Ma',
-        icon: 'pi pi-fw pi-telegram'
+        label: 'My projects',
+        icon: 'pi pi-fw pi-telegram',
+        routerLink: '/project/user-projects'
       },
       {
-        label: '3inich',
-        icon: 'pi pi-fw pi-users'
+        label: 'Projects List',
+        icon: 'pi pi-fw pi-list',
+        routerLink: '/project'
       },
       {
-        label: 'bech',
-        icon: 'pi pi-fw pi-calendar'
+        label: 'Add Project',
+        icon: 'pi pi-fw pi-plus',
+        routerLink: '/project/post-project'
       },
-      {
-        label: 'nkhdem',
-        icon: 'pi pi-fw pi-cog'
-      },
+
       {
         label: 'Profile',
         icon: 'pi pi-fw pi-user',

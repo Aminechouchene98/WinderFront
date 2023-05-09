@@ -5,8 +5,11 @@ import { AdminComponent } from './admin.component';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
-import {UsersListComponent} from "./users-list/users-list.component";
-import {PieChartComponent} from "./pie-chart/pie-chart.component";
+import {ReclamationDetailsComponent} from "./reclamation-details/reclamation-details.component";
+import {BadwordRecComponent} from "./badword-rec/badword-rec.component";
+import {AddBadwordRecComponent} from "./add-badword-rec/add-badword-rec.component";
+import { UsersListComponent } from './users-list/users-list.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 const routes: Routes = [
   {
@@ -26,17 +29,28 @@ const routes: Routes = [
         component: ProjectListComponent
       },
       {
-        path : 'users-list',
-        component : UsersListComponent
+        path: 'users-list',
+        component: UsersListComponent
       },
       {
-        path : 'users-pie',
-        component : PieChartComponent
+        path: 'users-pie',
+        component: PieChartComponent
       },
       {
         path: 'reclamation',
         component: ReclamationComponent
-      }
+      },
+      {
+        path: 'badword-rec',
+        component: BadwordRecComponent
+      },
+      { path: 'admin/add-badword-rec',
+        component: AddBadwordRecComponent
+      },
+
+      {
+        path: 'reclamations/:idRec',
+        component: ReclamationDetailsComponent }
     ]
   }
 ];

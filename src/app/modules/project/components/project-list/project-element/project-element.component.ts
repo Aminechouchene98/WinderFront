@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ProjectElementComponent {
   @Input() project: any;
+  username!: string;
 
   constructor(private router: Router) {}
   ngOnInit(): void {

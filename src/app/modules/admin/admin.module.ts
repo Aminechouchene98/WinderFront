@@ -18,13 +18,25 @@ import { ButtonModule } from 'primeng/button';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { DialogModule } from 'primeng/dialog';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import {ToastModule} from "primeng/toast";
+import {ToolbarModule} from "primeng/toolbar";
+import {TagModule} from "primeng/tag";
+import {RatingModule} from "primeng/rating";
+import {FileUploadModule} from "primeng/fileupload";
+import { ReclamationDetailsComponent } from './reclamation-details/reclamation-details.component';
+import { BadwordRecComponent } from './badword-rec/badword-rec.component';
+import { AddBadwordRecComponent } from './add-badword-rec/add-badword-rec.component';
+import {DividerModule} from "primeng/divider";
+import {InputTextareaModule} from "primeng/inputtextarea";
+
 import { UsersListComponent } from './users-list/users-list.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, UsersListComponent, PieChartComponent],
+
+  declarations: [AdminDashboardComponent, AdminComponent, MeetingsComponent, ProjectListComponent, ReclamationComponent, UsersListComponent, PieChartComponent, ReclamationDetailsComponent, BadwordRecComponent, AddBadwordRecComponent],
   imports: [
     FormsModule,
     CommonModule,
@@ -33,7 +45,14 @@ const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, Ta
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    ToastModule,
+    ToolbarModule,
+    TagModule,
+    RatingModule,
+    FileUploadModule,
+    DividerModule,
+    InputTextareaModule
   ]
 })
 export class AdminModule {}

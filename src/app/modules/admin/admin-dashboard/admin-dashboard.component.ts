@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ProjectService } from 'src/app/shared/services/project/project.service';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'winder-admin-dashboard',
@@ -9,9 +11,15 @@ import { Subscription } from 'rxjs';
 export class AdminDashboardComponent {
   data: any;
   dataRadar: any;
-
+  nProjects!: number;
+  nUsers!: any;
   options: any;
   optionsRadar: any;
+  clientUsers!: number;
+  devUsers!: number;
+  numberOfProjectsSinceLastVisit!: number;
+
+  constructor(private ps: ProjectService, private us: UserService) {}
 
   test() {
     const documentStyle1 = getComputedStyle(document.documentElement);
@@ -64,6 +72,21 @@ export class AdminDashboardComponent {
   }
 
   ngOnInit() {
+    this.ps.countProjects().subscribe((res) => {
+      this.nProjects = res;
+      console.log();
+    });
+
+    this.us.getusers().subscribe((res) => {
+      this.nUsers = res;
+      const usersArray = Object.values(res);
+      console.log(usersArray);
+
+      this.clientUsers = usersArray.filter((user) => user.role1 === 'Client').length;
+      this.devUsers = usersArray.filter((user) => user.role1 === 'Devloppeur').length;
+      console.log(this.clientUsers);
+      console.log(this.devUsers);
+    });
     this.test();
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');

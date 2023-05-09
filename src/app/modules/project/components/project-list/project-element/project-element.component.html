@@ -6,8 +6,8 @@
     </div>
 
     <p-chip
-      label="Ourari Jilani"
-      image="https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/318333736_1785673598468603_2444571119857172568_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=BwsDmpJ5EDwAX_rAneh&_nc_ht=scontent.ftun14-1.fna&oh=00_AfBGhPwJdBLV4RztUxUXB2VIX5yvEqeEym90ISFqgFka4w&oe=645341CD"></p-chip>
+      [label]="project?.user?.nom + ' ' + project?.user?.prenom"
+      image="https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/318333736_1785673598468603_2444571119857172568_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=gAzI5jiGq2QAX-QIZQ0&_nc_ht=scontent.ftun14-1.fna&oh=00_AfBAif8VDdRyOavMaJHvdND1ponYQ7Q6OUzQ4RIXW2pYmw&oe=645F1F4D"></p-chip>
     <small class="space-x-1 text-sm text-zinc-500"
       ><strong>Hourly: {{ project.budgetFrom }}TND -{{ project.budgetTo }}TND</strong><span>-</span><span>{{ project.scope }}</span
       ><span>-</span><span>Est. Budget:</span><span>{{ project.duration }}, to do</span><span>-</span><span>Posted</span><span>{{ project?.createdAt | date }}</span></small

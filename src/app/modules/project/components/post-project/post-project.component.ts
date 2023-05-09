@@ -241,6 +241,9 @@ export class PostProjectComponent implements OnInit {
   }
 
   postProject() {
+    const email = localStorage.getItem('email')?.toString();
+    console.log(localStorage.getItem('email'));
+
     const body = {
       title: this.postForm.controls['title'].value,
       skills: this.postForm.controls['skills'].value,
@@ -251,9 +254,8 @@ export class PostProjectComponent implements OnInit {
       duration: this.postForm.controls['duration'].value,
       experience: this.postForm.controls['experience'].value
     };
-    console.log(body);
-    this.ps.postProject(body).subscribe((res) => {
-      console.log(res);
+    console.log(body, email);
+    this.ps.postProject(body, email).subscribe(() => {
       this.router.navigate(['/project']);
     });
   }
