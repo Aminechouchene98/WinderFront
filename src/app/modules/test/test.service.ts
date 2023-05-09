@@ -33,6 +33,10 @@ export class TestService {
     return this.http.get<Test>(`${this.apiServerUrl}/tests/retrieve-test/${test_id}`);
   }
 
+  // public getTestQuestions1(): Observable<Question[]> {
+  //   return this.http.get<Question[]>(`${this.apiServerUrl}/tests/${randomParam}/questions`);
+  // }
+
   public getTestQuestions(test_id: number): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.apiServerUrl}/tests/${test_id}/questions`);
   }

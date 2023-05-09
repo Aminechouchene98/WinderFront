@@ -78,7 +78,7 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
     this.test_id = +Number(this.route.snapshot.paramMap.get('test_id'));
-    this.getQuestionsOfTest();
+    this.getQuestionsOfTest(this.test_id);
     this.InitDock();
     this.initAnimations();
     this.increaseProgressValue();
@@ -240,10 +240,10 @@ export class TestComponent implements OnInit {
     
 }
 
-  public getQuestionsOfTest(): void {
-    this.testService.getTestQuestions(this.test_id).subscribe((response: Question[]) => {
+  public getQuestionsOfTest(test_id: any): void {
+    this.testService.getTestQuestions(test_id).subscribe((response: Question[]) => {
       this.questions = response;
-      this.timer = this.questions.length * 1 * 60;
+      this.timer = this.questions.length * 1 * 30;
       this.MaxScore = this.questions.length * 100;
       this.requiredScore = (70 / 100) * this.MaxScore;
       console.log(this.questions);

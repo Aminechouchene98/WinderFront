@@ -10,7 +10,7 @@ import { SkillService } from 'src/app/shared/services/project/skill.service';
 export class DetailsTestComponent {
   test:any
 
-  constructor(private config: DynamicDialogConfig,  public ref: DynamicDialogRef, private ss: SkillService) {
+  constructor(private config: DynamicDialogConfig,  public ref: DynamicDialogRef) {
     
     this.test = this.config.data.data
   }
