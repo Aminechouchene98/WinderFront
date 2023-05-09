@@ -10,13 +10,6 @@ export class ReclamationService {
   baseUrl = 'http://localhost:8089/pidev';
   constructor(private http: HttpClient) {}
 
-  addReclamation(body: any) {
-    return this.http.post(this.baseUrl + 'reclamation', body);
-  }
-
-  getAllReclamations() {
-    return this.http.get(this.baseUrl + 'allReclamations');
-  }
 
   addReclamations(reclamation: Reclamation): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/reclamation/add-reclamation`, reclamation);

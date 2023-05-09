@@ -26,6 +26,8 @@ import {FileUploadModule} from "primeng/fileupload";
 import { ReclamationDetailsComponent } from './reclamation-details/reclamation-details.component';
 import { BadwordRecComponent } from './badword-rec/badword-rec.component';
 import { AddBadwordRecComponent } from './add-badword-rec/add-badword-rec.component';
+import {DividerModule} from "primeng/divider";
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, TableModule, ButtonModule, DialogModule];
 
@@ -44,7 +46,9 @@ const PRIME_MODULES = [ChartModule, MenuModule, TableModule, SlideMenuModule, Ta
     ToolbarModule,
     TagModule,
     RatingModule,
-    FileUploadModule
+    FileUploadModule,
+    DividerModule,
+    InputTextareaModule
   ]
 })
 export class AdminModule {}

@@ -6,6 +6,7 @@ import {ReclamationService} from "../../../shared/services/project/reclamation.s
 import { ResponseService } from 'src/app/shared/services/project/response.service';
 import {ResponseData} from "../../../shared/services/project/ResponseData";
 import {Response} from "../../../shared/services/project/response";
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'winder-reclamation-details',
@@ -18,6 +19,7 @@ export class ReclamationDetailsComponent implements OnInit {
   response: ResponseData = {} as ResponseData;
   responses: ResponseData[] = [];
   reclamations: Reclamation[] = [];
+  reclamationn: any;
 
 
   constructor(
@@ -120,5 +122,16 @@ export class ReclamationDetailsComponent implements OnInit {
       );
     }
   }
+
+ /* downloadPDF(): void {
+    const doc = new jsPDF();
+    doc.text('Détails de la réclamation', 10, 10);
+    doc.text(`Type: ${this.reclamationn.type}`, 10, 20);
+    doc.text(`Contenu: ${this.reclamationn.contenuRec}`, 10, 30);
+    doc.text(`Date d'envoi: ${this.reclamationn.sendingDate}`, 10, 40);
+    // Ajoutez les autres propriétés de la réclamation au PDF selon vos besoins
+
+    doc.save('reclamation.pdf');
+  } */
 
 }
