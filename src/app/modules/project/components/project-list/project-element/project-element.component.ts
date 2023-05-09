@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,8 +9,14 @@ import { Observable } from 'rxjs';
 })
 export class ProjectElementComponent {
   @Input() project: any;
+
+  constructor(private router: Router) {}
   ngOnInit(): void {
     console.log(this.project);
+  }
+
+  redirect() {
+    this.router.navigate(['/project/reclamation']);
   }
 
   showProjectDetails = false;

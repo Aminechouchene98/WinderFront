@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SkillService {
-  baseUrl = 'http://localhost:8089/';
+  baseUrl = 'http://localhost:8090/';
 
   constructor(private http: HttpClient) {}
 

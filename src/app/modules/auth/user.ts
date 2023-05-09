@@ -4,6 +4,12 @@ export enum Gender{
   OTHER = 'OTHER'
 }
 
+export enum Role1{
+  Admin = 'Admin',
+  Devloppeur = 'Devloppeur',
+  Entreprise = 'Entreprise',
+  Client = 'Client'
+}
 
 
 export interface User {
@@ -17,4 +23,5 @@ export interface User {
   gender:Gender;
   phoneNumber:number;
   token: string;
+  role1: Role1;
 }
