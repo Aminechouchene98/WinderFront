@@ -4,6 +4,13 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import {AuthguardGuard} from "./shared/authguard.guard";
 import {ProjectComponent} from "./modules/project/project.component";
 import {ProjectListComponent} from "./modules/project/components/project-list/project-list.component";
+import {ReclamationDetailsComponent} from "./modules/admin/reclamation-details/reclamation-details.component";
+import {AddBadwordRecComponent} from "./modules/admin/add-badword-rec/add-badword-rec.component";
+import {ListeReclamationComponent} from "./modules/project/components/liste-reclamation/liste-reclamation.component";
+import {
+  DetailsReclamationFComponent
+} from "./modules/project/components/details-reclamation-f/details-reclamation-f.component";
+
 import {ResetPasswordComponent} from "./modules/reset-password/reset-password/reset-password.component";
 import {ResetComponent} from "./modules/reset/reset/reset.component";
 import {AdminComponent} from "./modules/admin/admin.component";
@@ -15,6 +22,17 @@ const routes: Routes = [
     path: '',
     component: LandingPageComponent
   },
+  { path: 'reclamations/:id',
+    component: ReclamationDetailsComponent },
+  { path: 'admin/add-badword-rec',
+    component: AddBadwordRecComponent
+  },
+  { path: 'reclamations',
+    component: ListeReclamationComponent },
+  { path: 'reclamationDetails/:id',
+    component: DetailsReclamationFComponent },
+
+
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)

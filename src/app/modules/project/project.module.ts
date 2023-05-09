@@ -31,9 +31,13 @@ import { AccordionModule } from 'primeng/accordion';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReclamationUserComponent } from './components/reclamation-user/reclamation-user.component';
+import { ListeReclamationComponent } from './components/liste-reclamation/liste-reclamation.component';
+import {TableModule} from "primeng/table";
+import {TagModule} from "primeng/tag";
+import { DetailsReclamationFComponent } from './components/details-reclamation-f/details-reclamation-f.component';
+
 import { UserProjectsComponent } from './components/user-projects/user-projects.component';
 import { DialogModule } from 'primeng/dialog';
-import { TableModule } from 'primeng/table';
 
 const PRIME_MODULES = [
   MegaMenuModule,
@@ -61,6 +65,7 @@ const PRIME_MODULES = [
 ];
 
 @NgModule({
+
   declarations: [
     ProjectComponent,
     ProjectListComponent,
@@ -69,8 +74,8 @@ const PRIME_MODULES = [
     PostProjectComponent,
     EditPostModalComponent,
     ReclamationUserComponent,
-    UserProjectsComponent
+    UserProjectsComponent, ListeReclamationComponent, DetailsReclamationFComponent
   ],
-  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModule]
+  imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModul, TableModule, TagModule, DialogModulee]
 })
 export class ProjectModule {}

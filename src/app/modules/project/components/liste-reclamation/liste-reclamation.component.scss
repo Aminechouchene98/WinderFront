@@ -39,3 +39,46 @@
   box-shadow: 0 20px 25px -32px rgba(0, 0, 0, -0.9), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 0 none;
 }
+.reclamation-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button-group {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #16a34a;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
