@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjectService } from 'src/app/shared/services/project/project.service';
 
@@ -15,7 +16,7 @@ export class UserProjectsComponent {
     this.visible = true;
   }
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectService: ProjectService, private router: Router) {}
 
   ngOnInit() {
     this.loadProjects();
@@ -32,5 +33,9 @@ export class UserProjectsComponent {
     this.projectService.deleteProject(id).subscribe(() => {
       this.loadProjects();
     });
+  }
+
+  payUser() {
+    this.router.navigate(['/project/pay-user']);
   }
 }

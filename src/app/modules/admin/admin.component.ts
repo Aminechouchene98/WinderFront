@@ -19,6 +19,22 @@ export class AdminComponent {
         routerLink: '/admin/dashboard'
       },
       {
+        label: 'Test',
+        icon: 'pi pi-fw pi-question',
+        items: [
+          {
+            label: 'New Test',
+            icon: 'pi pi-fw pi-plus-circle',
+            routerLink: '/admin/add-test'
+          },
+          {
+            label: 'Tests List',
+            icon: 'pi pi-fw pi-list',
+            routerLink: '/admin/list-test'
+          }
+        ]
+      },
+      {
         label: 'Projects List',
         icon: 'pi pi-fw pi-file-edit',
         routerLink: '/admin/projects-list'
@@ -58,7 +74,7 @@ export class AdminComponent {
                   {
                     label: 'Users Chart',
                     icon: 'pi pi-fw pi-chart-line',
-                    routerLink:'/admin/users-pie'
+                    routerLink: '/admin/users-pie'
                   }
                 ]
               },
@@ -81,7 +97,7 @@ export class AdminComponent {
       {
         label: 'Logout',
         icon: 'pi pi-fw pi-power-off',
-        routerLink: '/auth/login',
+        routerLink: '/auth/login'
       }
     ];
   }

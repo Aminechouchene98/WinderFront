@@ -5,11 +5,13 @@ import { AdminComponent } from './admin.component';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
-import {ReclamationDetailsComponent} from "./reclamation-details/reclamation-details.component";
-import {BadwordRecComponent} from "./badword-rec/badword-rec.component";
-import {AddBadwordRecComponent} from "./add-badword-rec/add-badword-rec.component";
+import { ReclamationDetailsComponent } from './reclamation-details/reclamation-details.component';
+import { BadwordRecComponent } from './badword-rec/badword-rec.component';
+import { AddBadwordRecComponent } from './add-badword-rec/add-badword-rec.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { ListTestComponent } from '../test/test-admin/components/list-test/list-test.component';
+import { PostTestComponent } from '../test/test-admin/components/post-test/post-test.component';
 
 const routes: Routes = [
   {
@@ -44,13 +46,20 @@ const routes: Routes = [
         path: 'badword-rec',
         component: BadwordRecComponent
       },
-      { path: 'admin/add-badword-rec',
-        component: AddBadwordRecComponent
+      { path: 'admin/add-badword-rec', component: AddBadwordRecComponent },
+      {
+        path: 'list-test',
+        component: ListTestComponent
+      },
+      {
+        path: 'add-test',
+        component: PostTestComponent
       },
 
       {
         path: 'reclamations/:idRec',
-        component: ReclamationDetailsComponent }
+        component: ReclamationDetailsComponent
+      }
     ]
   }
 ];

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Reclamation} from "./reclamation";
-import {Observable} from "rxjs";
+import { Reclamation } from './reclamation';
+import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -9,13 +9,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ReclamationService {
-
   baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) {}
 
+  addReclamations(reclamation: Reclamation, userName: any): Observable<void> {
+    console.log(userName);
 
-  addReclamations(reclamation: Reclamation): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}reclamation/add-reclamation`, reclamation);
+    return this.http.post<void>(`${this.baseUrl}reclamation/add-reclamation/` + userName, reclamation);
   }
 
   listReclamations(): Observable<Reclamation[]> {
@@ -46,9 +46,9 @@ export class ReclamationService {
     return this.http.get<number>(`${this.baseUrl}reclamation/nombresReclamationAujourdhui`);
   }
 
-  getReclamationsByUser(userId: number): Observable<Reclamation[]> {
-   // const url = `${this.apiUrl}/getreclamationparuser/${userId}`;
-  //  return this.http.get<Reclamation[]>(url);
-    return this.http.get<Reclamation[]>(`${this.baseUrl}reclamation/getreclamationparuser/${userId}`);
+  getReclamationsByUser(userName: any): Observable<Reclamation[]> {
+    // const url = `${this.apiUrl}/getreclamationparuser/${userName}`;
+    //  return this.http.get<Reclamation[]>(url);
+    return this.http.get<Reclamation[]>(`${this.baseUrl}reclamation/getreclamationparuser/${userName}`);
   }
 }

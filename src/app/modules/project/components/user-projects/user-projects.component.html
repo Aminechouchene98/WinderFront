@@ -28,7 +28,10 @@
             <p>{{ project.description }}}</p>
           </p-dialog>
         </td>
-        <td><p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" (click)="delete(project.id)"></p-button></td>
+        <td>
+          <p-button pTooltip="Delete project" icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" style="margin-right: 10px" (click)="delete(project.id)"></p-button>
+          <p-button pTooltip="Pay Freelancer " icon="pi pi-dollar" styleClass="p-button-rounded p-button-success" (click)="payUser()"></p-button>
+        </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">

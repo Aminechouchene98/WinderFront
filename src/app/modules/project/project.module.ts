@@ -38,6 +38,7 @@ import { DetailsReclamationFComponent } from './components/details-reclamation-f
 
 import { UserProjectsComponent } from './components/user-projects/user-projects.component';
 import { DialogModule } from 'primeng/dialog';
+import { UserPaymentComponent } from './components/user-payment/user-payment.component';
 
 const PRIME_MODULES = [
   MegaMenuModule,
@@ -75,7 +76,8 @@ const PRIME_MODULES = [
     ReclamationUserComponent,
     UserProjectsComponent,
     ListeReclamationComponent,
-    DetailsReclamationFComponent
+    DetailsReclamationFComponent,
+    UserPaymentComponent
   ],
   imports: [CommonModule, ProjectRoutingModule, FormsModule, ReactiveFormsModule, ...PRIME_MODULES, HttpClientModule, SharedModule, TableModule, TagModule, DialogModule]
 })

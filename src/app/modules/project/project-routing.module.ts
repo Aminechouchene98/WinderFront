@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectComponent } from './project.component';
 import { PostProjectComponent } from './components/post-project/post-project.component';
 import { ReclamationUserComponent } from './components/reclamation-user/reclamation-user.component';
-import { ListeReclamationComponent } from './components/liste-reclamation/liste-reclamation.component'
-import {DetailsReclamationFComponent} from "./components/details-reclamation-f/details-reclamation-f.component";
+import { ListeReclamationComponent } from './components/liste-reclamation/liste-reclamation.component';
+import { DetailsReclamationFComponent } from './components/details-reclamation-f/details-reclamation-f.component';
 import { UserProjectsComponent } from './components/user-projects/user-projects.component';
+import { UserPaymentComponent } from './components/user-payment/user-payment.component';
 
 const routes: Routes = [
   {
@@ -20,13 +21,15 @@ const routes: Routes = [
     path: 'reclamation',
     component: ReclamationUserComponent
   },
-  { path: 'reclamations',
-    component: ListeReclamationComponent },
-  { path: 'reclamationDetails/:id',
-    component: DetailsReclamationFComponent },
+  { path: 'reclamations', component: ListeReclamationComponent },
+  { path: 'reclamationDetails/:id', component: DetailsReclamationFComponent },
   {
     path: 'user-projects',
     component: UserProjectsComponent
+  },
+  {
+    path: 'pay-user',
+    component: UserPaymentComponent
   }
 ];
 

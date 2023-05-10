@@ -60,12 +60,19 @@ export class LoginComponent {
             localStorage.setItem('email', this.email);
             localStorage.setItem('userName', this.userName);
             localStorage.setItem('gender', this.gender);
-            localStorage.setItem('status', 'true');
 
             if (localStorage.getItem('role1') == 'Admin') {
               this.router.navigate(['/admin/dashboard']);
             } else {
-              if (localStorage.getItem('status') == 'true') this.router.navigate(['/project']);
+              if (localStorage.getItem('role1') == 'Devloppeur') {
+                if (localStorage.getItem('score') == 'true') {
+                  this.router.navigate(['/project']);
+                } else {
+                  this.router.navigate(['/tests/redirect-to-test']);
+                }
+              } else {
+                this.router.navigate(['/project']);
+              }
             }
           }
         },
