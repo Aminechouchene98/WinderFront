@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProjectService } from 'src/app/shared/services/project/project.service';
+import { ReclamationService } from 'src/app/shared/services/project/reclamation.service';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -17,9 +18,10 @@ export class AdminDashboardComponent {
   optionsRadar: any;
   clientUsers!: number;
   devUsers!: number;
+  nReclamation!: number;
   numberOfProjectsSinceLastVisit!: number;
 
-  constructor(private ps: ProjectService, private us: UserService) {}
+  constructor(private ps: ProjectService, private us: UserService, private rs: ReclamationService) {}
 
   test() {
     const documentStyle1 = getComputedStyle(document.documentElement);
@@ -77,6 +79,10 @@ export class AdminDashboardComponent {
       console.log();
     });
 
+    this.rs.nombresReclamationAujourdhui().subscribe((res) => {
+      this.nReclamation = res;
+      console.log(this.nReclamation);
+    });
     this.us.getusers().subscribe((res) => {
       this.nUsers = res;
       const usersArray = Object.values(res);

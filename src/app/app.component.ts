@@ -40,6 +40,11 @@ export class AppComponent {
         command: () => (this.visible = true)
       },
       {
+        label: 'Reclamations',
+        icon: 'pi pi-fw pi-minus-circle',
+        routerLink: '/project/reclamations'
+      },
+      {
         label: 'Logout',
         icon: 'pi pi-fw pi-power-off',
         command: () => this.userservice.logoutUser()
