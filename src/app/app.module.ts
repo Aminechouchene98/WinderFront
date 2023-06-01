@@ -28,6 +28,8 @@ import { ProfileDetailsComponent } from './modules/profile-details/profile-detai
 import { DialogModule } from 'primeng/dialog';
 import { FinishScreenFailComponent } from './modules/test/finish-screen-fail/finish-screen-fail.component';
 import { FinishScreenComponent } from './modules/test/finish-screen/finish-screen.component';
+import { AddProposalComponent } from './modules/proposal/add-proposal/add-proposal.component';
+import { ProposalfComponent } from './modules/proposal/proposalf/proposalf.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { FinishScreenComponent } from './modules/test/finish-screen/finish-scree
     QuestionAdminComponent,
     FinishScreenComponent,
     FinishScreenFailComponent,
-    RedirectToTestComponent
+    RedirectToTestComponent,
+    AddProposalComponent,
+    ProposalfComponent
   ],
   imports: [
     BrowserModule,
