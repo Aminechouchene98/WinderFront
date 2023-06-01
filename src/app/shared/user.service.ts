@@ -22,6 +22,8 @@ export class UserService {
   }
 
   signUp(body: FormBuilder): Observable<any> {
+    console.log(body);
+
     return this.http.post(`${this.apiUrl}registerNewUser`, body);
   }
 

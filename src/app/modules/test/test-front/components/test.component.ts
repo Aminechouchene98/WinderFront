@@ -165,6 +165,7 @@ export class TestComponent implements OnInit {
     } else if (this.currentQuestionIndex === this.questions.length - 1 && (this.score == this.MaxScore || this.score >= this.requiredScore)) {
       this.isLastQuestion = true;
       this.finishQuizSuccess();
+      localStorage.setItem('score', 'true');
     } else if (this.currentQuestionIndex === this.questions.length - 1 && this.score < this.requiredScore) {
       this.isLastQuestion = true;
       this.finishQuizFail();
@@ -262,7 +263,6 @@ export class TestComponent implements OnInit {
     for (let question of this.questions) {
       if (question.correct_option === this.selectedAnswer) {
         this.score = this.score + 100;
-        localStorage.setItem('score', 'true');
       }
     }
   }

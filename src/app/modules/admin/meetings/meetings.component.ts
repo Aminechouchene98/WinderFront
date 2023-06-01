@@ -74,21 +74,21 @@ export class MeetingsComponent {
     },
     {
       start: startOfDay(new Date()),
-      title: 'An event with no end date',
+      title: 'Meeting with Yahya',
       color: { ...colors['yellow'] },
       actions: this.actions
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+      title: 'Meeting with Jilani',
       color: { ...colors['blue'] },
       allDay: true
     },
     {
       start: addHours(startOfDay(new Date()), 2),
       end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
+      title: 'Meeting with Fares',
       color: { ...colors['yellow'] },
       actions: this.actions,
       resizable: {
